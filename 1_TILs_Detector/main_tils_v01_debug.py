@@ -5,9 +5,15 @@ CCF, 2019
 '''
 
 import os
+
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 # The GPU id to use, usually either "0" or "1";
-os.environ["CUDA_VISIBLE_DEVICES"] = "0,1" # use gpu 4
+os.environ["CUDA_VISIBLE_DEVICES"] = "4" # use gpu 4
+os.environ["OMP_NUM_THREADS"] = "4" # export OMP_NUM_THREADS=4
+os.environ["OPENBLAS_NUM_THREADS"] = "4" # export OPENBLAS_NUM_THREADS=4
+os.environ["MKL_NUM_THREADS"] = "6" # export MKL_NUM_THREADS=6
+os.environ["VECLIB_MAXIMUM_THREADS"] = "4" # export VECLIB_MAXIMUM_THREADS=4
+os.environ["NUMEXPR_NUM_THREADS"] = "6" # export NUMEXPR_NUM_THREADS=6
 import sys
 import pandas as pd
 import numpy as np
@@ -20,7 +26,7 @@ sys.path.insert(0,'../../../xhm_deep_learning/models')
 sys.path.insert(0,'../../../xhm_deep_learning/functions')
 #sys.path.append('../../xhm_deep_learning/models')
 #sys.path.append('/home/xuh3/projects/xhm_deep_learning/models') # linux absolute path
-from Transfer_Learning_V02 import Transfer_Learning_V02             # Transfer_Learning is my defined class
+from Transfer_Learning_V02_debug import Transfer_Learning_V02_debug             # Transfer_Learning is my defined class
 from wsi_tiling_prediction_v4 import wsi_tiling_prediction_v4
 
 # switch between training & testing
@@ -32,10 +38,10 @@ if __name__=='__main__':
 
     if training==1:
         #parameter settings
-        train_dir = '../../../data/pan_cancer_tils/data_v03/train/'
-        valid_dir = '../../../data/pan_cancer_tils/data_v03/valid/'
+        train_dir = 'E:/data/data_v03/train/'
+        valid_dir = 'E:/data/data_v03/valid/'
 
-        model_dir = '../../../data/pan_cancer_tils/models/'
+        model_dir = '../../../data/pan_cancer_tils/models_debug/'
         tensorboard_dir = '../../../data/pan_cancer_tils/tensorboard/'
 
         model_name=['resnet18','shufflenet','densenet']
@@ -47,23 +53,21 @@ if __name__=='__main__':
         epochs = 100
         gpus=0 # 0 - run the model by defaul assignment of gpu
         imagenet_init=True # False - weights are randomly initialized, tune_all_layers will be run
-
-
         zscore=False         # note setting for this one???? it is related to testing process
 
-        for i in range(len(frozen_per)):
-            fp=frozen_per[i]
-            for j in range(len(optimizer)):
-                op=optimizer[j]
-                for k in range(len(learning_rate)):
-                    lr=learning_rate[k]
-                    start_time = time.time()
-                    resnet18_model=Transfer_Learning_V02(train_dir,valid_dir,model_dir,tensorboard_dir,
+
+        fp=frozen_per[0]
+
+        op=optimizer[0]
+
+        lr=learning_rate[1]
+        start_time = time.time()
+        resnet18_model=Transfer_Learning_V02_debug(train_dir,valid_dir,model_dir,tensorboard_dir,
                                                                 model_name[0],batch_size,epochs,gpus,
                                                                 imagenet_init,fp,op,lr,zscore)
 
-                    resnet18_model.train_model()
-                    print("---{} minutes---".format((time.time() - start_time) / 60))
+        resnet18_model.train_model()
+        print("---{} minutes---".format((time.time() - start_time) / 60))
 
     elif testing==1:
         if model_option=='model_resnet18_v01':
