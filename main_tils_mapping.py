@@ -16,8 +16,11 @@ import pandas as pd
 import time
 from tqdm import tqdm
 import sys
-sys.path.insert(0,'../../../xhm_deep_learning/functions')
-from wsi_coarse_level import wsi_coarse_level
+
+rela_path='../../'
+
+sys.path.insert(0,rela_path+'xhm_deep_learning/functions')
+#from wsi_coarse_level import wsi_coarse_level
 
 global t_g
 t_g = 0.3  # a key threshold, attentions?
@@ -113,13 +116,14 @@ def wsi_tiling(File,temp_predPath, dest_imagePath,img_name,Tile_size,parallel_ru
 
 
     time_elapsed = time.time() - since
-    print('Training complete in {:.0f}m {:.0f}s'.format(
+    print('Mapping complete in {:.0f}m {:.0f}s'.format(
         time_elapsed // 60, time_elapsed % 60))
 
 if __name__=='__main__':
 
     kang_colon=False
-    lee_gastric=True
+    lee_gastric=False
+    tcga_coad_read=True
 
     if kang_colon==True:
         ## whole slide image path
@@ -142,6 +146,23 @@ if __name__=='__main__':
         predPath=['../../../data/pan_cancer_tils/data_lee_gastric_pred/pred_excels/']
         destPath=['../../../data/pan_cancer_tils/data_lee_gastric_pred/pred_images/']
         wsi_ext='.tiff'
+    elif tcga_coad_read==True:
+        imagePath=[rela_path+'data/tcga_coad_slide/tcga_coad/quality_a1/',
+                   rela_path+'data/tcga_coad_slide/tcga_coad/quality_a2/',
+                   rela_path+'data/tcga_coad_slide/tcga_coad/quality_b/',
+                   rela_path+'data/tcga_coad_slide/tcga_coad/quality_uncertain/',
+                   rela_path+'data/tcga_read_slide/dataset/']
+        predPath=[rela_path+'data/tcga_coad_read_data/coad_read_tils_preds/pred_files/',
+                  rela_path+'data/tcga_coad_read_data/coad_read_tils_preds/pred_files/',
+                  rela_path+'data/tcga_coad_read_data/coad_read_tils_preds/pred_files/',
+                  rela_path+'data/tcga_coad_read_data/coad_read_tils_preds/pred_files/',
+                  rela_path+'data/tcga_coad_read_data/coad_read_tils_preds/pred_files/']
+        destPath=[rela_path+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps/',
+                  rela_path+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps/',
+                  rela_path+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps/',
+                  rela_path+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps/',
+                  rela_path+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps/']
+        wsi_ext='.svs'
     else:
         raise RuntimeError('incorrect selection of dataset........')
 

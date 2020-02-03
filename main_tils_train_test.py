@@ -17,8 +17,8 @@ import pandas as pd
 import time
 import argparse
 
-sys.path.insert(0,'../../../xhm_deep_learning/models')
-sys.path.insert(0,'../../../xhm_deep_learning/functions')
+sys.path.insert(0,'../../xhm_deep_learning/models')
+sys.path.insert(0,'../../xhm_deep_learning/functions')
 #sys.path.append('/home/xuh3/projects/xhm_deep_learning/models')                    # linux absolute path
 from Transfer_Learning_PyTorch_V01 import Transfer_Learning_PyTorch_V01             # Transfer_Learning is my defined class
 
@@ -31,8 +31,8 @@ testing_ext=True
 if __name__=='__main__':
 
     if training == True:
-        data_dir = '../../../data/pan_cancer_tils/data_v02/'  # not color normalized version
-        model_dir = '../../../data/pan_cancer_tils/models/resnet34/'
+        data_dir = '../../data/pan_cancer_tils/data_v02/'  # not color normalized version
+        model_dir = '../../data/pan_cancer_tils/models/resnet34/'
         model_version = []
         validation_acc = []
         testing_acc = []
@@ -90,7 +90,9 @@ if __name__=='__main__':
         #best_resnet18='resnet18_0_adam_0.0001_4.pt'
 
         kang_colon=False
-        lee_gastric=True
+        lee_gastric=False
+        tcga_coad_read=True
+
         if kang_colon==True:
             test_path=['../../../data/pan_cancer_tils/data_yonsei_v01/181119_v2/',
                        '../../../data/pan_cancer_tils/data_yonsei_v01/181211_v2/',
@@ -104,16 +106,30 @@ if __name__=='__main__':
             test_path=['../../../data/pan_cancer_tils/data_lee_gastric/']
             wsi_path=['../../../data/lee_gastric_slide/Stomach_Immunotherapy/']
             wsi_ext='.tiff'
+        elif tcga_coad_read==True:
+            test_path=['../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_coad_a1/',
+                       '../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_coad_a2/',
+                       '../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_coad_b/',
+                       '../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_coad_uncertain/',
+                       '../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_read/']
+
+            wsi_path=['../../data/tcga_coad_slide/tcga_coad/quality_a1/',
+                      '../../data/tcga_coad_slide/tcga_coad/quality_a2/',
+                      '../../data/tcga_coad_slide/tcga_coad/quality_b/',
+                      '../../data/tcga_coad_slide/tcga_coad/quality_uncertain/',
+                      '../../data/tcga_read_slide/dataset/']
+            output_path='../../data/tcga_coad_read_data/coad_read_tils_preds/pred_files/'
+            wsi_ext='.svs'
         else:
             raise RuntimeError('processing dataset selection is not correct~~~~~~~~~')
 
         for i in range(len(test_path)):
             start_time = time.time()
             # best resnet18
-            model_tl = Transfer_Learning_PyTorch_V01(test_dir=test_path[i], model_dir='../../../data/pan_cancer_tils/models/resnet18/',
+            model_tl = Transfer_Learning_PyTorch_V01(test_dir=test_path[i], model_dir='../../data/pan_cancer_tils/models/resnet18/',
                                                        model_name='resnet18',
                                                        batch_size=4, fp=0, op='adam',
-                                                       lr=0.0001,num_workers=10,wsi_path=wsi_path[i],wsi_ext=wsi_ext)
+                                                       lr=0.0001,num_workers=10,wsi_path=wsi_path[i],wsi_ext=wsi_ext,output_path=output_path)
             model_tl.test_model_external()
             print("---{} minutes---".format((time.time() - start_time) / 60))
 

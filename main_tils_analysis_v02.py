@@ -29,7 +29,7 @@ from skimage import measure, transform, morphology
 from scipy import ndimage
 from skimage.draw import circle
 import sys
-sys.path.insert(0,'../../../xhm_deep_learning/functions')
+sys.path.insert(0,'../../xhm_deep_learning/functions')
 from wsi_preprocess_mask import wsi_preprocess_mask_v02
 from wsi_coarse_level import wsi_coarse_read
 
@@ -48,7 +48,12 @@ def iterate_circles(binary_mask):
         dis_map=ndimage.distance_transform_edt(binary_mask)
         max_rad=np.max(dis_map)
         r_c=np.where(dis_map==np.max(dis_map))
-        rr,cc=circle(float(r_c[0][0]),float(r_c[1][0]),np.floor(max_rad-1))
+        rr, cc = circle(float(r_c[0][0]), float(r_c[1][0]), np.floor(max_rad - 1))
+        # if max_rad>2:
+        #     rr,cc=circle(float(r_c[0][0]),float(r_c[1][0]),np.floor(max_rad-1))
+        # else:
+        #     rr,cc=r_c[0][0], r_c[1][0]
+
         bool_indicator=np.logical_or(np.logical_or(rr>circle_mask.shape[0]-1, rr<0), np.logical_or(cc>circle_mask.shape[1]-1,cc<0))
         ind=np.asarray(np.where(bool_indicator))
         if ind.size>0:
@@ -97,6 +102,10 @@ def tumor_til_analysis_v02(file_img,file_tumor,file_til,thr,mag):
 
     tumor_circle_mask, tumor_circle_mask2 = iterate_circles(tumor_no_til)
 
+    tumor_no_til_c=np.logical_and(tumor_no_til,np.invert(tumor_circle_mask2))
+    tumor_no_til_cs=np.zeros_like(tumor_no_til_c)
+    tumor_no_til_cs[0:2:tumor_no_til.shape[0],0:2:tumor_no_til.shape[1]]=tumor_no_til_c[0:2:tumor_no_til.shape[0],0:2:tumor_no_til.shape[1]]
+
     im = Image.fromarray((tumor_circle_mask2 * 127).astype(np.uint8))
     im.save('../../../data_history/debugs/' + file_img.split('/')[-2] + '_' + file_img.split('/')[-1] + '.png')
 
@@ -105,18 +114,18 @@ def tumor_til_analysis_v02(file_img,file_tumor,file_til,thr,mag):
 
 if __name__=='__main__':
     ## whole slide image path
-    imagePath = ['../../../data/kang_colon_slide/181119/',
-                 '../../../data/kang_colon_slide/181211/']
+    imagePath = ['../../data/kang_colon_slide/181119/',
+                 '../../data/kang_colon_slide/181211/']
                  #'../../../data/kang_colon_slide/Kang_MSI_WSI_2019_10_07/']
 
     ## tumor prediction mask
-    tumorPath = ['../../../data/kang_colon_data/predictions_tumor/dl_model_v01/181119_low/',
-                 '../../../data/kang_colon_data/predictions_tumor/dl_model_v01/181211_low/']
+    tumorPath = ['../../data/kang_colon_data/td_models/predictions_kang/dl_model_v01/181119_low/',
+                 '../../data/kang_colon_data/td_models/predictions_kang/dl_model_v01/181211_low/']
                  #'../../../data/kang_colon_data/predictions_tumor/dl_model_v01/Kang_MSI_WSI_2019_10_07_low/']
 
     ## til prediction mask
-    tilPath= ['../../../data/pan_cancer_tils/data_yonsei_v01_pred/181119/',
-              '../../../data/pan_cancer_tils/data_yonsei_v01_pred/181211/']
+    tilPath= ['../../data/pan_cancer_tils/data_yonsei_v01_pred/181119/',
+              '../../data/pan_cancer_tils/data_yonsei_v01_pred/181211/']
               #'../../../data/pan_cancer_tils/data_yonsei_v01_pred//Kang_MSI_WSI_2019_10_07/']
     thr=0.5 # threshold on tumor prediction map
     mag = 0.078125*2
@@ -125,7 +134,7 @@ if __name__=='__main__':
         t_tumorPath=tumorPath[i]
         t_tilPath=tilPath[i]
         wsis=sorted(os.listdir(t_imagePath))
-        for img_name in wsis:
+        for img_name in wsis[5:]:
             if '.mrxs' in img_name:
                 file_img=t_imagePath+img_name
                 file_tumor=t_tumorPath+img_name+'.png'

@@ -2,40 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9412b69-eeb4-4bb4-ac18-d5d88e67fa94" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/data_01.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/data_02.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/TILs_Analysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TILs_Analysis.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/.idea/1)TILs_Detector.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/data_01.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/data_02.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/data_03.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/data_04.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/main_tils_analysis_v01.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/main_tils_analysis_v02.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/main_tils_mapping.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/main_tils_train_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/plot_01.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/plot_02.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/plot_03.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/plot_04.py" beforeDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="data_01.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data_01.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="data_02.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/data_02.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" column="15" lean-forward="false" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -47,71 +37,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/data_01.py" />
-        <option value="$PROJECT_DIR$/data_02.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1013" />
-    <option name="y" value="472" />
-    <option name="width" value="2104" />
-    <option name="height" value="1356" />
-  </component>
+  <component name="ProjectId" id="1WLQ9U7geGOEnV8ha8dsSgifKnN" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="TILs_Analysis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TILs_Analysis" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../misc_codes/learning-to-reweight-examples" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tcga_coad_project" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager">
-    <configuration name="data_01" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.main_tils_mapping">
+    <configuration name="data_04" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TILs_Analysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -122,21 +63,120 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="TILs_Analysis" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_01.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_04.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main_tils_analysis_v01" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TILs_Analysis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main_tils_analysis_v01.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main_tils_analysis_v02" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TILs_Analysis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main_tils_analysis_v02.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main_tils_mapping" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TILs_Analysis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main_tils_mapping.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main_tils_train_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TILs_Analysis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main_tils_train_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Python.data_01" />
+      <list>
+        <item itemvalue="Python.main_tils_mapping" />
+        <item itemvalue="Python.main_tils_analysis_v01" />
+        <item itemvalue="Python.main_tils_analysis_v02" />
+        <item itemvalue="Python.main_tils_train_test" />
+        <item itemvalue="Python.data_04" />
       </list>
     </recent_temporary>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -151,31 +191,59 @@
     </task>
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="1013" y="472" width="2104" height="1356" extended-state="0" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24975799" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32107842" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924837" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39950982" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-    </layout>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="WindowStateProjectService">
+    <state x="92" y="523" width="1137" height="583" key="#xdebugger.evaluate" timestamp="1580740202194">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="92" y="523" width="1137" height="583" key="#xdebugger.evaluate/0.0.3440.1400@0.0.3440.1400" timestamp="1580740202194" />
+    <state x="776" y="484" key="FileChooserDialogImpl" timestamp="1579882252200">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="776" y="484" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1579882252200" />
+    <state width="1792" height="245" key="GridCell.Tab.0.bottom" timestamp="1580743374456">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="1792" height="245" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1580743374456" />
+    <state width="1792" height="245" key="GridCell.Tab.0.center" timestamp="1580743374456">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="1792" height="245" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1580743374456" />
+    <state width="1792" height="245" key="GridCell.Tab.0.left" timestamp="1580743374455">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="1792" height="245" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1580743374455" />
+    <state width="1792" height="245" key="GridCell.Tab.0.right" timestamp="1580743374456">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="1792" height="245" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1580743374456" />
+    <state width="1792" height="245" key="GridCell.Tab.1.bottom" timestamp="1580743374456">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="1792" height="245" key="GridCell.Tab.1.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1580743374456" />
+    <state width="1792" height="245" key="GridCell.Tab.1.center" timestamp="1580743374456">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="1792" height="245" key="GridCell.Tab.1.center/0.0.3440.1400@0.0.3440.1400" timestamp="1580743374456" />
+    <state width="1792" height="245" key="GridCell.Tab.1.left" timestamp="1580743374456">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="1792" height="245" key="GridCell.Tab.1.left/0.0.3440.1400@0.0.3440.1400" timestamp="1580743374456" />
+    <state width="1792" height="245" key="GridCell.Tab.1.right" timestamp="1580743374456">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="1792" height="245" key="GridCell.Tab.1.right/0.0.3440.1400@0.0.3440.1400" timestamp="1580743374456" />
+    <state x="1395" y="343" key="SettingsEditor" timestamp="1578926257413">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="1395" y="343" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1578926257413" />
+    <state width="915" height="619" key="XDebugger.FullValuePopup" timestamp="1579034234212">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="915" height="619" key="XDebugger.FullValuePopup/0.0.3440.1400@0.0.3440.1400" timestamp="1579034234212" />
+    <state x="1924" y="544" key="com.intellij.ide.util.TipDialog" timestamp="1580738896832">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="1924" y="544" key="com.intellij.ide.util.TipDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1580738896832" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -185,76 +253,32 @@
           <line>24</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/data_04.py</url>
+          <line>163</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main_tils_train_test.py</url>
+          <line>26</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main_tils_analysis_v02.py</url>
+          <line>131</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main_tils_analysis_v01.py</url>
+          <line>173</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main_tils_mapping.py</url>
+          <line>127</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="13" />
     </breakpoint-manager>
-    <watches-manager />
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="evaluateCodeFragment">
-      <expression>
-        <expression-string>des_path[0]+pid[0]+'_'+labels[i].split(' ')[0]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>labels[i].split(' ')[0]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>shutil.copy(temp_path+'/'+labels[i].split(' ')[0],des_path[0]+pid[0]+'_'+labels[i].split(' ')[0])</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>temp_path</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>subfolders[5]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>subfolders</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>t</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>labels</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>labels[i]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-    </expressions>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data_01.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data_02.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="15" lean-forward="false" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>

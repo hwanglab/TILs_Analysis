@@ -130,30 +130,30 @@ if __name__=='__main__':
     tcga_coad_read_slide=True
     ## to tiling yonsei data
     if kang_colon_slide==True:
-        imagePath=['../../../data/kang_colon_slide/181119/',
-                   '../../../data/kang_colon_slide/181211/',
-                   '../../../data/kang_colon_slide/Kang_MSI_WSI_2019_10_07/']
+        imagePath=['../../data/kang_colon_slide/181119/',
+                   '../../data/kang_colon_slide/181211/',
+                   '../../data/kang_colon_slide/Kang_MSI_WSI_2019_10_07/']
 
-        destPath=['../../../data/pan_cancer_tils/data_yonsei_v01/181119_v2/',
-                  '../../../data/pan_cancer_tils/data_yonsei_v01/181211_v2/',
-                  '../../../data/pan_cancer_tils/data_yonsei_v01/Kang_MSI_WSI_2019_10_07_v2/']
+        destPath=['../../data/pan_cancer_tils/data_yonsei_v01/181119_v2/',
+                  '../../data/pan_cancer_tils/data_yonsei_v01/181211_v2/',
+                  '../../data/pan_cancer_tils/data_yonsei_v01/Kang_MSI_WSI_2019_10_07_v2/']
 
         wsi_ext='.mrxs'
     elif lee_gastric_slide == True:  ## to tiling lee data
-        imagePath = ['../../../data/lee_gastric_slide/Stomach_Immunotherapy/']
-        destPath = ['../../../data/pan_cancer_tils/data_lee_gastric/']
+        imagePath = ['../../data/lee_gastric_slide/Stomach_Immunotherapy/']
+        destPath = ['../../data/pan_cancer_tils/data_lee_gastric/']
         wsi_ext='.tiff'
     elif tcga_coad_read_slide==True:
-        imagePath = ['../../../data/tcga_coad_slide/tcga_coad/quality_a1/',
-                     '../../../data/tcga_coad_slide/tcga_coad/quality_a2/',
-                     '../../../data/tcga_coad_slide/tcga_coad/quality_b/',
-                     '../../../data/tcga_coad_slide/tcga_coad/quality_uncertain/',
-                     '../../../data/tcga_read_slide/dataset/']
-        destPath = ['../../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_coad_a1/',
-                    '../../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_coad_a2/',
-                    '../../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_coad_b/',
-                    '../../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_coad_uncertain/',
-                    '../../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_read/']
+        imagePath = ['../../data/tcga_coad_slide/tcga_coad/quality_a1/',
+                     '../../data/tcga_coad_slide/tcga_coad/quality_a2/',
+                     '../../data/tcga_coad_slide/tcga_coad/quality_b/',
+                     '../../data/tcga_coad_slide/tcga_coad/quality_uncertain/',
+                     '../../data/tcga_read_slide/dataset/']
+        destPath = ['../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_coad_a1/',
+                    '../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_coad_a2/',
+                    '../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_coad_b/',
+                    '../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_coad_uncertain/',
+                    '../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_read/']
         wsi_ext='.svs'
 
     else:
@@ -161,11 +161,11 @@ if __name__=='__main__':
 
     # tileSize=[50,50] # micro-meters
     tileSize = [112, 112]  # micro-meters
-    for i in range(len(imagePath)):
+    for i in range(4,len(imagePath)):
         temp_imagePath = imagePath[i]
         dest_imagePath = destPath[i]
         wsis = sorted(os.listdir(temp_imagePath))
-        for img_name in tqdm(wsis):
+        for img_name in tqdm(wsis[27:]):
             if wsi_ext in img_name:
                 file = temp_imagePath + img_name
                 wsi_tiling(file, dest_imagePath, img_name, tileSize)
