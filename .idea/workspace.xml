@@ -2,25 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9412b69-eeb4-4bb4-ac18-d5d88e67fa94" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/TILs_Analysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TILs_Analysis.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_tils_train_test_lre.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/.idea/1)TILs_Detector.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/data_01.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/data_02.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/data_03.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/data_04.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/main_tils_analysis_v01.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/main_tils_analysis_v02.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/main_tils_mapping.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/main_tils_train_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/plot_01.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/plot_02.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/plot_03.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/1_TILs_Detector/plot_04.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/R_analysis/analysis_01.R" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/analysis_01.R" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_04.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_04.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_tils_analysis_v01.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_tils_analysis_v01.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_tils_mapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_tils_mapping.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_tils_train_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_tils_train_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,28 +38,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../misc_codes/learning-to-reweight-examples" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.main_tils_mapping">
-    <configuration name="data_04" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="TILs_Analysis" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_04.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.main_tils_train_test_lre">
     <configuration name="main_tils_analysis_v01" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TILs_Analysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -156,13 +123,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="main_tils_train_test_lre" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TILs_Analysis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main_tils_train_test_lre.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main_tils_mapping" />
+        <item itemvalue="Python.main_tils_train_test_lre" />
         <item itemvalue="Python.main_tils_analysis_v01" />
-        <item itemvalue="Python.main_tils_analysis_v02" />
         <item itemvalue="Python.main_tils_train_test" />
-        <item itemvalue="Python.data_04" />
+        <item itemvalue="Python.main_tils_mapping" />
+        <item itemvalue="Python.main_tils_analysis_v02" />
       </list>
     </recent_temporary>
   </component>
@@ -192,58 +180,58 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="92" y="523" width="1137" height="583" key="#xdebugger.evaluate" timestamp="1580740202194">
+    <state x="731" y="658" width="1137" height="583" key="#xdebugger.evaluate" timestamp="1581355938848">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="92" y="523" width="1137" height="583" key="#xdebugger.evaluate/0.0.3440.1400@0.0.3440.1400" timestamp="1580740202194" />
-    <state x="776" y="484" key="FileChooserDialogImpl" timestamp="1579882252200">
+    <state x="731" y="658" width="1137" height="583" key="#xdebugger.evaluate/0.0.3440.1400@0.0.3440.1400" timestamp="1581355938848" />
+    <state x="860" y="463" key="FileChooserDialogImpl" timestamp="1580918332402">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="776" y="484" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1579882252200" />
-    <state width="1792" height="245" key="GridCell.Tab.0.bottom" timestamp="1580743374456">
+    <state x="860" y="463" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1580918332402" />
+    <state width="1940" height="319" key="GridCell.Tab.0.bottom" timestamp="1581355858956">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1792" height="245" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1580743374456" />
-    <state width="1792" height="245" key="GridCell.Tab.0.center" timestamp="1580743374456">
+    <state width="1940" height="319" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1581355858956" />
+    <state width="1940" height="319" key="GridCell.Tab.0.center" timestamp="1581355858956">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1792" height="245" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1580743374456" />
-    <state width="1792" height="245" key="GridCell.Tab.0.left" timestamp="1580743374455">
+    <state width="1940" height="319" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1581355858956" />
+    <state width="1940" height="319" key="GridCell.Tab.0.left" timestamp="1581355858956">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1792" height="245" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1580743374455" />
-    <state width="1792" height="245" key="GridCell.Tab.0.right" timestamp="1580743374456">
+    <state width="1940" height="319" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1581355858956" />
+    <state width="1940" height="319" key="GridCell.Tab.0.right" timestamp="1581355858956">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1792" height="245" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1580743374456" />
-    <state width="1792" height="245" key="GridCell.Tab.1.bottom" timestamp="1580743374456">
+    <state width="1940" height="319" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1581355858956" />
+    <state width="1940" height="319" key="GridCell.Tab.1.bottom" timestamp="1581355875746">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1792" height="245" key="GridCell.Tab.1.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1580743374456" />
-    <state width="1792" height="245" key="GridCell.Tab.1.center" timestamp="1580743374456">
+    <state width="1940" height="319" key="GridCell.Tab.1.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1581355875746" />
+    <state width="1940" height="319" key="GridCell.Tab.1.center" timestamp="1581355875745">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1792" height="245" key="GridCell.Tab.1.center/0.0.3440.1400@0.0.3440.1400" timestamp="1580743374456" />
-    <state width="1792" height="245" key="GridCell.Tab.1.left" timestamp="1580743374456">
+    <state width="1940" height="319" key="GridCell.Tab.1.center/0.0.3440.1400@0.0.3440.1400" timestamp="1581355875745" />
+    <state width="1940" height="319" key="GridCell.Tab.1.left" timestamp="1581355875745">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1792" height="245" key="GridCell.Tab.1.left/0.0.3440.1400@0.0.3440.1400" timestamp="1580743374456" />
-    <state width="1792" height="245" key="GridCell.Tab.1.right" timestamp="1580743374456">
+    <state width="1940" height="319" key="GridCell.Tab.1.left/0.0.3440.1400@0.0.3440.1400" timestamp="1581355875745" />
+    <state width="1940" height="319" key="GridCell.Tab.1.right" timestamp="1581355875746">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1792" height="245" key="GridCell.Tab.1.right/0.0.3440.1400@0.0.3440.1400" timestamp="1580743374456" />
+    <state width="1940" height="319" key="GridCell.Tab.1.right/0.0.3440.1400@0.0.3440.1400" timestamp="1581355875746" />
     <state x="1395" y="343" key="SettingsEditor" timestamp="1578926257413">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="1395" y="343" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1578926257413" />
-    <state width="915" height="619" key="XDebugger.FullValuePopup" timestamp="1579034234212">
+    <state width="915" height="619" key="XDebugger.FullValuePopup" timestamp="1581109596316">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="915" height="619" key="XDebugger.FullValuePopup/0.0.3440.1400@0.0.3440.1400" timestamp="1579034234212" />
-    <state x="1924" y="544" key="com.intellij.ide.util.TipDialog" timestamp="1580738896832">
+    <state width="915" height="619" key="XDebugger.FullValuePopup/0.0.3440.1400@0.0.3440.1400" timestamp="1581109596316" />
+    <state x="1924" y="544" key="com.intellij.ide.util.TipDialog" timestamp="1580912630341">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1924" y="544" key="com.intellij.ide.util.TipDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1580738896832" />
+    <state x="1924" y="544" key="com.intellij.ide.util.TipDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1580912630341" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -259,24 +247,44 @@
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main_tils_train_test.py</url>
-          <line>26</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main_tils_analysis_v02.py</url>
           <line>131</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main_tils_analysis_v01.py</url>
-          <line>173</line>
+          <line>180</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main_tils_mapping.py</url>
           <line>127</line>
           <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main_tils_train_test_lre.py</url>
+          <line>56</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main_tils_train_test.py</url>
+          <line>55</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main_tils_mapping.py</url>
+          <line>171</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main_tils_analysis_v01.py</url>
+          <line>159</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main_tils_train_test_lre.py</url>
+          <line>69</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

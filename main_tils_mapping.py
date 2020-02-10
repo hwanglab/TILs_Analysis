@@ -169,12 +169,13 @@ if __name__=='__main__':
     #tileSize=[50,50] # micro-meters
     tileSize=[112,112] # micro-meters
     parallel_running=True # True for parallel running
-    for i in range(len(imagePath)):
+    for i in range(4,len(imagePath)):
         temp_imagePath = imagePath[i]
         temp_predPath = predPath[i]
         dest_imagePath = destPath[i]
         wsis = sorted(os.listdir(temp_imagePath))
-        for img_name in wsis:
+        for img_name in wsis[93:]:
             if wsi_ext in img_name:
                 file=temp_imagePath+img_name
+                print(img_name)
                 wsi_tiling(file, temp_predPath, dest_imagePath,img_name, tileSize, parallel_running=parallel_running)

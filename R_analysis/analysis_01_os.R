@@ -1,4 +1,4 @@
-## purpose: perform univariate variable analysis, e.g., tils densities -> patient survivials (PFS)
+## purpose: perform univariate variable analysis, e.g., tils densities -> patient overall survivials
 # author: Hongming Xu, CCF, 2020
 # email: mxu@ualberta.ca
 
@@ -6,6 +6,7 @@ library("readxl")
 library(survival)
 library(survminer)
 library("forestplot")
+
 
 rela_path='../../../'
 
@@ -22,18 +23,17 @@ for (nn in 1:184) # excluding MSI patients
   if (!is.na(p_data$ID[nn]))
   {
     pid<-c(pid,pid_temp)
-    futime<-c(futime,as.numeric(p_data$PFS[nn]))
-    fustat<-c(fustat,as.character(p_data$PFS_01[nn]))
+    futime<-c(futime,as.numeric(p_data$OS[nn]))
+    fustat<-c(fustat,as.character(p_data$OS_01[nn]))
   }
 }
 
 # tils density path
 my_data<-read_excel(paste(rela_path,'data/pan_cancer_tils/feat_tils/yonsei_colon/','til_density.xlsx',sep=""))
 
-# switches for different options
-univ_analysis1=FALSE  # two-class km plots
-univ_analysis2=TRUE   # three-class km plots
-univ_analysis3=FALSE  # forest plot & univariate cxo proportional hazards analysis
+univ_analysis1=FALSE
+univ_analysis2=TRUE
+univ_analysis3=FALSE
 
 ## 1) use each feature to divide patients into two groups, then plot km curves for univariate analysis
 if (univ_analysis1==TRUE)
@@ -89,7 +89,7 @@ if (univ_analysis1==TRUE)
   }
 }
 
-## 2) three-levels KM plots
+## 2) use each feature to divide patients into three groups, then plot km curves for univariate analysis
 if (univ_analysis2==TRUE)
 {
   for (nn in c("feat0","feat1","feat2","feat3","feat4")) # 5 features
@@ -110,7 +110,7 @@ if (univ_analysis2==TRUE)
     ttH<-quantile(feat_v,0.666)
     
     plabel<-cut(feat_v,breaks=c(-1,ttL,ttH,Inf),labels=c("Low","Mid","High"))
-  
+    
     
     ## plot survival curves
     data_df<-data.frame("patientID"=Reduce(rbind,pid2))
@@ -143,7 +143,6 @@ if (univ_analysis2==TRUE)
     rm(data_df)
   }
 }
-  
 
 ## 3) use univariate coxph function to perform univarate analysis
 if (univ_analysis3==TRUE)
@@ -167,7 +166,7 @@ if (univ_analysis3==TRUE)
     }
     
   }
-    
+  
   my_data$futime<-as.numeric(futime3)
   my_data$fustat<-as.numeric(fustat3)
   
@@ -220,5 +219,5 @@ if (univ_analysis3==TRUE)
 
 
 t=0
-                    
-                    
+
+

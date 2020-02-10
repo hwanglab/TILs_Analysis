@@ -4,9 +4,8 @@ divide whole slide image into tiles and save the tiles into local disk
 background tiles are removed based on some criteira (see code)
 
 purpose: tiling the whole slide images
-author: HONGMING XU
-CCF
-qeutions: mxu@ualberta.ca
+author: HONGMING XU, CCF
+email: mxu@ualberta.ca
 '''
 import os
 import numpy as np

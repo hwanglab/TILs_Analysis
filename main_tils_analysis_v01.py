@@ -81,6 +81,10 @@ def tumor_til_analysis(file_img,file_tumor,file_til,thr,mag):
     LR2=LR.copy()
     LR2=overlap_contour(LR2,contours,[255,255,0])
 
+    til_map2 = transform.resize(til_map, LR.shape, order=0)
+    til_map2=(til_map2*255).astype('uint8')
+    til_map2 = overlap_contour(til_map2,contours,[255,255,255])
+
     feat['feat0'].append(np.sum(np.logical_and(tumorb,til_mask))/np.sum(tumorb))
 
     color=[[0,255,0],[0,0,255],[0,255,255],[128,128,0]]
@@ -96,6 +100,9 @@ def tumor_til_analysis(file_img,file_tumor,file_til,thr,mag):
             temp_inv_mask=np.logical_or(inv_mask,tumorb)
             contours = measure.find_contours(temp_inv_mask, 0.5)
             LR2=overlap_contour(LR2,contours,color[ind])
+
+            til_map2 = overlap_contour(til_map2, contours, [255,255,255])
+
 
     if debug==True:
         im=Image.fromarray(LR2)
@@ -136,7 +143,7 @@ if __name__=='__main__':
               #'../../../data/pan_cancer_tils/data_yonsei_v01_pred//Kang_MSI_WSI_2019_10_07/']
 
     global debug
-    debug=False
+    debug=True
 
     patient_id=[]
     global feat
@@ -155,7 +162,7 @@ if __name__=='__main__':
         t_tumorPath=tumorPath[i]
         t_tilPath=tilPath[i]
         wsis=sorted(os.listdir(t_imagePath))
-        for img_name in wsis:
+        for img_name in wsis[3:]:
             if '.mrxs' in img_name:
                 file_img=t_imagePath+img_name
                 file_tumor=t_tumorPath+img_name+'.png'
@@ -165,7 +172,7 @@ if __name__=='__main__':
 
                 tumor_til_analysis(file_img,file_tumor,file_til,thr,mag)
 
-    save_feat=True
+    save_feat=False
     if save_feat==True:
         data={'patient id': patient_id}
         data.update(feat)
