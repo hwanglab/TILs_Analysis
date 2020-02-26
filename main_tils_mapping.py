@@ -23,7 +23,7 @@ sys.path.insert(0,rela_path+'xhm_deep_learning/functions')
 #from wsi_coarse_level import wsi_coarse_level
 
 global t_g
-t_g = 0.3  # a key threshold, attentions?
+
 
 def parallel_filling(i,X,Y,img_name,Stride,File):
     Slide = openslide.OpenSlide(File)
@@ -46,7 +46,7 @@ def parallel_filling(i,X,Y,img_name,Stride,File):
                 else:
                     pred_c_g[i, j, 2] = 255
 
-def wsi_tiling(File,temp_predPath, dest_imagePath,img_name,Tile_size,parallel_running):
+def wsi_tiling(File,temp_predPath,dest_imagePath,img_name,Tile_size,parallel_running):
     since = time.time()
 
     df=pd.read_excel(temp_predPath+img_name.split('.')[0]+'.xlsx')
@@ -125,6 +125,8 @@ if __name__=='__main__':
     lee_gastric=False
     tcga_coad_read=True
 
+
+
     if kang_colon==True:
         ## whole slide image path
         imagePath=['../../../data/kang_colon_slide/181119/',
@@ -141,11 +143,13 @@ if __name__=='__main__':
                   '../../../data/pan_cancer_tils/data_yonsei_v01_pred/181211/',
                   '../../../data/pan_cancer_tils/data_yonsei_v01_pred/Kang_MSI_WSI_2019_10_07/']
         wsi_ext='.mrxs'
+        t_g = 0.3  # a key threshold, attentions?
     elif lee_gastric==True:
         imagePath=['../../../data/lee_gastric_slide/Stomach_Immunotherapy/']
         predPath=['../../../data/pan_cancer_tils/data_lee_gastric_pred/pred_excels/']
         destPath=['../../../data/pan_cancer_tils/data_lee_gastric_pred/pred_images/']
         wsi_ext='.tiff'
+        t_g = 0.3  # a key threshold, attentions?
     elif tcga_coad_read==True:
         imagePath=[rela_path+'data/tcga_coad_slide/tcga_coad/quality_a1/',
                    rela_path+'data/tcga_coad_slide/tcga_coad/quality_a2/',
@@ -163,18 +167,20 @@ if __name__=='__main__':
                   rela_path+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps/',
                   rela_path+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps/']
         wsi_ext='.svs'
+        t_g = 0.5  # a key threshold, attentions?
+
     else:
         raise RuntimeError('incorrect selection of dataset........')
 
     #tileSize=[50,50] # micro-meters
     tileSize=[112,112] # micro-meters
     parallel_running=True # True for parallel running
-    for i in range(4,len(imagePath)):
+    for i in range(len(imagePath)):
         temp_imagePath = imagePath[i]
         temp_predPath = predPath[i]
         dest_imagePath = destPath[i]
         wsis = sorted(os.listdir(temp_imagePath))
-        for img_name in wsis[93:]:
+        for img_name in wsis:
             if wsi_ext in img_name:
                 file=temp_imagePath+img_name
                 print(img_name)

@@ -26,34 +26,33 @@ from Transfer_Learning_PyTorch_V01 import Transfer_Learning_PyTorch_V01         
 
 # switch between training & testing & testing_external
 training=True
-testing=False
+testing=True
 testing_ext=False
 
 if __name__=='__main__':
 
+    data_dir = rela_path + 'data/pan_cancer_tils/data_v02/'  # not color normalized version
+    model_dir = rela_path + 'data/pan_cancer_tils/models/resnet18_lre/'
+    model_version = []
+    validation_acc = []
+    testing_acc = []
+    training_time = []
+
+    # parameter settings
+    model_name = ['resnet18']
+    frozen_per = [0]  # percentile of frozen trainable layers, typically 0,0.5,0.8 [0,1]
+    optimizer = ['sgd', 'adam']
+    learning_rate = [0.001, 0.0001, 0.00001]
+    batch_size = [4, 16, 64]
+
+    load_data = 'v1'  # change this one according to different applications
+    num_workers = 10
+    epochs = 100
+    imagenet_init = True  # False - weights are randomly initialized, tune_all_layers will be run
+    num_early_stoping = 5
+    zscore = False
+
     if training == True:
-        data_dir = rela_path+'data/pan_cancer_tils/data_v02/'  # not color normalized version
-        model_dir = rela_path+'data/pan_cancer_tils/models/resnet18_lre/'
-        model_version = []
-        validation_acc = []
-        testing_acc = []
-        training_time = []
-
-
-        # parameter settings
-        model_name = ['resnet18', 'shufflenet', 'resnet34']
-        frozen_per = [0, 0.8]                                   # percentile of frozen trainable layers, typically 0,0.5,0.8 [0,1]
-        optimizer = ['sgd', 'adam']
-        learning_rate = [0.001, 0.0001, 0.00001]
-        batch_size = [4, 16, 32, 64]
-
-        load_data = 'load_data_v1'                              # change this one according to different applications
-        num_workers=10
-        epochs = 100
-        imagenet_init=True                                      # False - weights are randomly initialized, tune_all_layers will be run
-        num_early_stoping=5
-        zscore=False
-
         for i in range(len(frozen_per)):
             fp=frozen_per[i]
             for j in range(len(optimizer)):
@@ -64,28 +63,30 @@ if __name__=='__main__':
                         bs=batch_size[b]
 
                         start_time = time.time()
-                        model_tl=Transfer_Learning_PyTorch_V01(load_data, data_dir, model_dir, model_name[0], bs, num_workers, epochs,
-                                                                     imagenet_init,fp,op,lr,num_early_stoping,zscore)
 
-                        valid_acc = model_tl.train_model_lre()
+
+                        model_tl = Transfer_Learning_PyTorch_V01(load_data, data_dir, model_dir, model_name='resnet18', batch_size=bs, num_workers=10, epochs=epochs,
+                                                 img_init=imagenet_init, fp=fp, op=op, lr=lr, num_es=num_early_stoping, zscore=zscore)
+
+                        valid_acc,_ = model_tl.train_model_lre()
                         print("---{} minutes---".format((time.time() - start_time) / 60))
                         training_time.append((time.time() - start_time) / 60)
 
-        #                 model_v="{}_{}_{}_{}_{}.pt".format(model_name[0], fp, op, lr, bs)
-        #                 model_version.append(model_v)
-        #                 validation_acc.append(valid_acc.cpu().numpy().tolist())
-        #
-        #
-        #                 model_tl = Transfer_Learning_PyTorch_V01(load_data=load_data,test_dir=data_dir, model_dir=model_dir,
-        #                                                                model_name=model_name[0],
-        #                                                                batch_size=bs,fp=fp,op=op,lr=lr)
-        #                 test_acc = model_tl.test_model()
-        #                 testing_acc.append(test_acc.cpu().numpy().tolist())
-        #
-        # data = {'Models': model_version, 'Valid Acc': validation_acc, 'Test Acc': testing_acc, 'Training Time': training_time}
-        # df = pd.DataFrame(data)
-        # pred_file = model_dir + 'logs.xlsx'
-        # df.to_excel(pred_file)
+                        model_v = "{}_{}_{}_{}_{}.pt".format('resnet18', fp, op, lr, bs)
+                        model_version.append(model_v)
+                        validation_acc.append(valid_acc.cpu().numpy().tolist())
+
+
+                        model_tl = Transfer_Learning_PyTorch_V01(load_data=load_data, test_dir=data_dir, model_dir=model_dir, num_workers=10,
+                                                                       model_name='resnet18',
+                                                                       batch_size=bs,fp=fp,op=op,lr=lr)
+                        test_acc = model_tl.test_model_lre()
+                        testing_acc.append(test_acc.cpu().numpy().tolist())
+
+        data = {'Models': model_version, 'Valid Acc': validation_acc, 'Test Acc': testing_acc, 'Training Time': training_time}
+        df = pd.DataFrame(data)
+        pred_file = model_dir + 'logs.xlsx'
+        df.to_excel(pred_file)
 
     if testing_ext==True:
         #best_resnet18='resnet18_0_adam_0.0001_4.pt'

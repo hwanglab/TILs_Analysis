@@ -31,14 +31,14 @@ for (nn in 1:184) # excluding MSI patients
 # tils density path
 my_data<-read_excel(paste(rela_path,'data/pan_cancer_tils/feat_tils/yonsei_colon/','til_density.xlsx',sep=""))
 
-univ_analysis1=FALSE
+univ_analysis1=TRUE
 univ_analysis2=TRUE
-univ_analysis3=FALSE
+univ_analysis3=TRUE
 
 ## 1) use each feature to divide patients into two groups, then plot km curves for univariate analysis
 if (univ_analysis1==TRUE)
 {
-  for (nn in c("feat0","feat1","feat2","feat3","feat4")) # 5 features
+  for (nn in c("feat0","feat1","feat2","feat3","feat4","feat5","feat6")) # 5 features
   {
     feat_v<-vector()
     for (pp in 1:length(pid))
@@ -92,7 +92,7 @@ if (univ_analysis1==TRUE)
 ## 2) use each feature to divide patients into three groups, then plot km curves for univariate analysis
 if (univ_analysis2==TRUE)
 {
-  for (nn in c("feat0","feat1","feat2","feat3","feat4")) # 5 features
+  for (nn in c("feat0","feat1","feat2","feat3","feat4","feat5","feat6")) # 5 features
   {
     feat_v<-vector()
     for (pp in 1:length(pid))
@@ -175,7 +175,7 @@ if (univ_analysis3==TRUE)
   
   
   ## to apply the univariate coxph function to multiple covariates at once:
-  covariates <- c("feat0", "feat1",  "feat2", "feat3", "feat4")
+  covariates <- c("feat0", "feat1",  "feat2", "feat3", "feat4","feat5","feat6")
   univ_formulas <- sapply(covariates,
                           function(x) as.formula(paste('Surv(futime, fustat)~', x)))
   

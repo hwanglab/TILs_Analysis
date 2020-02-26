@@ -24,9 +24,9 @@ from Transfer_Learning_PyTorch_V01 import Transfer_Learning_PyTorch_V01         
 
 
 # switch between training & testing & testing_external
-training=True
+training=False
 testing=False
-testing_ext=False
+testing_ext=True
 
 if __name__=='__main__':
 
@@ -46,7 +46,7 @@ if __name__=='__main__':
         learning_rate = [0.001, 0.0001, 0.00001]
         batch_size = [4, 16, 32, 64]
 
-        load_data = 'load_data_v1'                              # change this one according to different applications
+        load_data = 'v1'                              # change this one according to different applications
         num_workers=10
         epochs = 100
         imagenet_init=True                                      # False - weights are randomly initialized, tune_all_layers will be run
@@ -91,7 +91,9 @@ if __name__=='__main__':
 
         kang_colon=False
         lee_gastric=False
-        tcga_coad_read=True
+        tcga_coad_read=False
+        lee_colon=False
+        cheong_stomach=True
 
         if kang_colon==True:
             test_path=['../../../data/pan_cancer_tils/data_yonsei_v01/181119_v2/',
@@ -120,16 +122,28 @@ if __name__=='__main__':
                       '../../data/tcga_read_slide/dataset/']
             output_path='../../data/tcga_coad_read_data/coad_read_tils_preds/pred_files/'
             wsi_ext='.svs'
+        elif lee_colon==True:
+            pass
+        elif cheong_stomach==True:
+            test_path=['../../data/cheong_stomach_stage4/all_tiles_tils/biopsy/',
+                       '../../data/cheong_stomach_stage4/all_tiles_tils/surgery/']
+            wsi_path=['../../data/Stomach_Cancer_Stage4_Immunotherapy/biopsy_45pts/',
+                      '../../data/Stomach_Cancer_Stage4_Immunotherapy/surgical_19pts/']
+
+            output_path=['../../data/cheong_stomach_stage4/tils_pred/pred_excels/biopsy/',
+                         '../../data/cheong_stomach_stage4/tils_pred/pred_excels/surgery/']
+            wsi_ext='.czi'
+
         else:
             raise RuntimeError('processing dataset selection is not correct~~~~~~~~~')
 
-        for i in range(4,len(test_path)):
+        for i in range(len(test_path)):
             start_time = time.time()
             # best resnet18
             model_tl = Transfer_Learning_PyTorch_V01(test_dir=test_path[i], model_dir='../../data/pan_cancer_tils/models/resnet18/',
                                                        model_name='resnet18',
                                                        batch_size=4, fp=0, op='adam',
-                                                       lr=0.0001,num_workers=10,wsi_path=wsi_path[i],wsi_ext=wsi_ext,output_path=output_path)
+                                                       lr=0.0001,num_workers=10,wsi_path=wsi_path[i],wsi_ext=wsi_ext,output_path=output_path[i])
             model_tl.test_model_external()
             print("---{} minutes---".format((time.time() - start_time) / 60))
 

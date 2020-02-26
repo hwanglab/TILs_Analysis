@@ -17,6 +17,7 @@ from PIL import Image
 import concurrent.futures
 from itertools import repeat
 from tqdm import tqdm
+import pandas as pd
 
 def wsi_coarse_level(Slide,Magnification,Stride,tol=0.02):
     # get slide dimensions, zoom levels, and objective information
@@ -126,7 +127,9 @@ if __name__=='__main__':
 
     kang_colon_slide=False
     lee_gastric_slide=False
-    tcga_coad_read_slide=True
+    tcga_coad_read_slide=False
+    lee_colon_slide=True
+
     ## to tiling yonsei data
     if kang_colon_slide==True:
         imagePath=['../../data/kang_colon_slide/181119/',
@@ -155,16 +158,34 @@ if __name__=='__main__':
                     '../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_read/']
         wsi_ext='.svs'
 
+    elif lee_colon_slide ==True:
+        imagePath = ['Z:/Datasets/Colon_St_Mary_Hospital_SungHak_Lee_Whole_Slide_Image/CRC St. Mary hospital/']
+        destPath = ['../../data/lee_colon_data/all_tiles_tils/']
+        wsi_ext='.tiff'
+
+        clinic_info=pd.read_excel('../../data/lee_colon_data/Colorectal cancer dataset.xlsx')
+        pid=[i+j for i, j in zip(clinic_info['S no (primary)'].tolist(),clinic_info['Sub no (T)'].tolist())]
+        pid2 = [sub.replace('#', '-') for sub in pid if isinstance(sub, str)]
+
     else:
         raise ValueError('incorrect data selection~~~~~~')
 
     # tileSize=[50,50] # micro-meters
     tileSize = [112, 112]  # micro-meters
-    for i in range(4,len(imagePath)):
+    for i in range(len(imagePath)):
         temp_imagePath = imagePath[i]
         dest_imagePath = destPath[i]
         wsis = sorted(os.listdir(temp_imagePath))
-        for img_name in tqdm(wsis[27:]):
+        for img_name in tqdm(wsis):
             if wsi_ext in img_name:
-                file = temp_imagePath + img_name
-                wsi_tiling(file, dest_imagePath, img_name, tileSize)
+                if lee_colon_slide==True:   # add this condition, only process tumor slides
+                    temp_split=img_name.split('-')
+                    temp_split[1]=temp_split[1].zfill(6)
+                    pp='-'.join(temp_split)
+                    if pp[:-5] in pid2:
+                        file = temp_imagePath + img_name
+                        print(img_name)
+                        wsi_tiling(file, dest_imagePath, img_name, tileSize)
+                else:
+                    file = temp_imagePath + img_name
+                    wsi_tiling(file, dest_imagePath, img_name, tileSize)
