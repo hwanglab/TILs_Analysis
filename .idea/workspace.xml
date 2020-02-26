@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9412b69-eeb4-4bb4-ac18-d5d88e67fa94" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Tumor_detector_stomach_colon/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tumor_detector_stomach_colon/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tumor_detector_stomach_colon/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tumor_detector_stomach_colon/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tumor_detector_stomach_colon/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tumor_detector_stomach_colon/main_td_train_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_04_czi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data_05.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main_tils_mapping_czi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Visualization/utils_funcs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/analysis_01.R" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/analysis_01.R" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/analysis_01_os.R" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/analysis_01_os.R" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_04.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_04.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_tils_analysis_v01.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_tils_analysis_v01.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_tils_mapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_tils_mapping.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_tils_train_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_tils_train_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_tils_train_test_lre.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_tils_train_test_lre.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,10 +180,10 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="654" y="499" width="1263" height="470" key="#xdebugger.evaluate/0.0.3440.1400@0.0.3440.1400" timestamp="1582742366074" />
-    <state x="1739" y="536" key="FileChooserDialogImpl" timestamp="1582648654002">
+    <state x="1739" y="536" key="FileChooserDialogImpl" timestamp="1582743922639">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1739" y="536" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1582648654002" />
+    <state x="1739" y="536" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1582743922639" />
     <state width="1442" height="318" key="GridCell.Tab.0.bottom" timestamp="1582742439024">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
