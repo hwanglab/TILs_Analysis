@@ -11,7 +11,7 @@ questions: mxu@ualberta.ca
 import os
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 # The GPU id to use, usually either "0" or "1";
-os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2" # use gpu 4
+os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3,4" # use gpu 4
 import sys
 import pandas as pd
 import time
@@ -26,12 +26,13 @@ from Transfer_Learning_PyTorch_V01 import Transfer_Learning_PyTorch_V01         
 # switch between training & testing & testing_external
 training=False
 testing=False
+testing_int=False   # for debugging
 testing_ext=True
 
 if __name__=='__main__':
 
     if training == True:
-        data_dir = '../../data/pan_cancer_tils/data_v02/'  # not color normalized version
+        data_dir = '../../data/pan_cancer_tils/data_v02/'           # not color normalized version
         model_dir = '../../data/pan_cancer_tils/models/resnet34/'
         model_version = []
         validation_acc = []
@@ -86,14 +87,41 @@ if __name__=='__main__':
         pred_file = model_dir + 'logs.xlsx'
         df.to_excel(pred_file)
 
+    if testing_int == True: # for debugging
+        data_dir = '../../data/pan_cancer_tils/data_v02/'  # not color normalized version
+        model_dir = '../../data/pan_cancer_tils/models/resnet18/'
+
+
+       # parameter settings
+        model_name = ['resnet18']
+        frozen_per = [0]  # percentile of frozen trainable layers, typically 0,0.5,0.8 [0,1]
+        optimizer = ['adam']
+        learning_rate = [0.0001]
+        batch_size = [4]
+
+        load_data = 'v1'  # change this one according to different applications
+        num_workers = 10
+        epochs = 100
+        imagenet_init = True  # False - weights are randomly initialized, tune_all_layers will be run
+        num_early_stoping = 5
+        zscore = False
+
+        model_tl = Transfer_Learning_PyTorch_V01(load_data=load_data, test_dir=data_dir,
+                                                model_dir=model_dir,
+                                                model_name=model_name[0],
+                                                batch_size=batch_size[0], fp=frozen_per[0], op=optimizer[0], lr=learning_rate[0])
+        test_acc = model_tl.test_model()
+
+
     if testing_ext==True:
         #best_resnet18='resnet18_0_adam_0.0001_4.pt'
 
         kang_colon=False
         lee_gastric=False
         tcga_coad_read=False
-        lee_colon=False
-        cheong_stomach=True
+        lee_colon=True
+        cheong_stomach=False
+
 
         if kang_colon==True:
             test_path=['../../../data/pan_cancer_tils/data_yonsei_v01/181119_v2/',
@@ -123,7 +151,10 @@ if __name__=='__main__':
             output_path='../../data/tcga_coad_read_data/coad_read_tils_preds/pred_files/'
             wsi_ext='.svs'
         elif lee_colon==True:
-            pass
+            test_path=['../../data/lee_colon_data/all_tiles_tils/']
+            wsi_path=['../../data/lee_colon_data/wsi_tumor_files/']
+            output_path=['../../data/lee_colon_data/tils_pred/pred_excels/']
+            wsi_ext='.tiff'
         elif cheong_stomach==True:
             test_path=['../../data/cheong_stomach_stage4/all_tiles_tils/biopsy/',
                        '../../data/cheong_stomach_stage4/all_tiles_tils/surgery/']

@@ -1,4 +1,4 @@
-## purpose: perform univariate variable analysis, e.g., tils densities -> patient overall survivials
+## purpose: perform univariate variable analysis, e.g., tils densities -> patient survivials (PFS)
 # author: Hongming Xu, CCF, 2020
 # email: mxu@ualberta.ca
 
@@ -6,7 +6,6 @@ library("readxl")
 library(survival)
 library(survminer)
 library("forestplot")
-
 
 rela_path='../../../'
 
@@ -23,17 +22,18 @@ for (nn in 1:184) # excluding MSI patients
   if (!is.na(p_data$ID[nn]))
   {
     pid<-c(pid,pid_temp)
-    futime<-c(futime,as.numeric(p_data$OS[nn]))
-    fustat<-c(fustat,as.character(p_data$OS_01[nn]))
+    futime<-c(futime,as.numeric(p_data$PFS[nn]))
+    fustat<-c(fustat,as.character(p_data$PFS_01[nn]))
   }
 }
 
 # tils density path
-my_data<-read_excel(paste(rela_path,'data/pan_cancer_tils/feat_tils/yonsei_colon/','til_density.xlsx',sep=""))
+my_data<-read_excel(paste(rela_path,'data/pan_cancer_tils/feat_tils/yonsei_colon/threshold0.3/','til_density.xlsx',sep=""))
 
-univ_analysis1=TRUE
-univ_analysis2=TRUE
-univ_analysis3=TRUE
+# switches for different options
+univ_analysis1=TRUE  # two-class km plots
+univ_analysis2=TRUE   # three-class km plots
+univ_analysis3=TRUE  # forest plot & univariate cxo proportional hazards analysis
 
 ## 1) use each feature to divide patients into two groups, then plot km curves for univariate analysis
 if (univ_analysis1==TRUE)
@@ -52,7 +52,7 @@ if (univ_analysis1==TRUE)
     futime2<-futime[-c(ind_na)]
     fustat2<-fustat[-c(ind_na)]
     pid2<-pid[-c(ind_na)]
-    tt<-quantile(feat_v,0.67) # use median value to divide into high vs low
+    tt<-quantile(feat_v,0.50) # use median value to divide into high vs low
     plabel<-(feat_v>tt[1])
     plabel[plabel==TRUE]<-'High'
     plabel[plabel==FALSE]<-'Low'
@@ -78,18 +78,21 @@ if (univ_analysis1==TRUE)
     #setEPS()
     #postscript("whatever.eps")
     
-    ggsurvplot(fit1,pval = TRUE,
+    survp<-ggsurvplot(fit1,pval = TRUE,
                risk.table = TRUE,
                legend=c(0.8,0.2),
                #legend.labs=c("High (42)","Low (19)"),
                legend.title="Categories",
                xlab='Time in Days')+ggtitle("Yonsei Colon Cohort")
     
+    ggsave(file=paste('2_',nn,".png",sep=""),print(survp),path='./yonsei_dfs/')
+    
+    
     rm(data_df)
   }
 }
 
-## 2) use each feature to divide patients into three groups, then plot km curves for univariate analysis
+## 2) three-levels KM plots
 if (univ_analysis2==TRUE)
 {
   for (nn in c("feat0","feat1","feat2","feat3","feat4","feat5","feat6")) # 5 features
@@ -110,7 +113,7 @@ if (univ_analysis2==TRUE)
     ttH<-quantile(feat_v,0.666)
     
     plabel<-cut(feat_v,breaks=c(-1,ttL,ttH,Inf),labels=c("Low","Mid","High"))
-    
+  
     
     ## plot survival curves
     data_df<-data.frame("patientID"=Reduce(rbind,pid2))
@@ -133,16 +136,19 @@ if (univ_analysis2==TRUE)
     #setEPS()
     #postscript("whatever.eps")
     
-    ggsurvplot(fit1,pval = TRUE,
+    survp<-ggsurvplot(fit1,pval = TRUE,
                risk.table = TRUE,
                legend=c(0.8,0.2),
                #legend.labs=c("High (42)","Low (19)"),
                legend.title="Categories",
                xlab='Time in Days')+ggtitle("Yonsei Colon Cohort")
     
+    ggsave(file=paste('3_',nn,".png",sep=""),print(survp),path='./yonsei_dfs/')
+    
     rm(data_df)
   }
 }
+  
 
 ## 3) use univariate coxph function to perform univarate analysis
 if (univ_analysis3==TRUE)
@@ -166,7 +172,7 @@ if (univ_analysis3==TRUE)
     }
     
   }
-  
+    
   my_data$futime<-as.numeric(futime3)
   my_data$fustat<-as.numeric(fustat3)
   
@@ -219,5 +225,5 @@ if (univ_analysis3==TRUE)
 
 
 t=0
-
-
+                    
+                    

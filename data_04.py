@@ -18,6 +18,12 @@ import concurrent.futures
 from itertools import repeat
 from tqdm import tqdm
 import pandas as pd
+from skimage import transform
+
+rela_path='../../'
+import sys
+sys.path.insert(0,rela_path+'xhm_deep_learning/functions')
+from MacenkoNormalizer import MacenkoNormalizer
 
 def wsi_coarse_level(Slide,Magnification,Stride,tol=0.02):
     # get slide dimensions, zoom levels, and objective information
@@ -48,7 +54,7 @@ def wsi_coarse_level(Slide,Magnification,Stride,tol=0.02):
 
     return Level,Tout,Factor
 
-def parallel_tiling(i,X,Y,dest_imagePath,img_name,Stride,File):
+def parallel_tiling(i,X,Y,dest_imagePath,img_name,Stride,File,color_norm):
     Slide = openslide.OpenSlide(File)
 
     for j in range(X.shape[1] - 1):
@@ -60,6 +66,14 @@ def parallel_tiling(i,X,Y,dest_imagePath,img_name,Stride,File):
             1] * 0.3:
             tile_name = img_name.split('.')[0] + '_' + str(X[i, j]) + '_' + str(Y[i, j]) + '_' + str(
                 Stride[0]) + '_' + str(Stride[1]) + '_' + '.png'
+
+            if color_norm == True:
+                try:
+                    Tile = normalizer_g.transform(Tile)
+                except:
+                    print('i=%d,j=%d' % (i, j))
+                    continue
+
             img = Image.fromarray(Tile)
             img.save(dest_imagePath + tile_name)
 
@@ -67,7 +81,31 @@ def parallel_tiling(i,X,Y,dest_imagePath,img_name,Stride,File):
             # if debug_g==True:
             #     pred_gg[i,j]=255
 
-def wsi_tiling(File,dest_imagePath,img_name,Tile_size,debug=False,parallel_running=True):
+def parallel_tiling_roi(i,X,Y,dest_imagePath,img_name,Stride,File,color_norm,roi_mask):
+    Slide = openslide.OpenSlide(File)
+
+    for j in range(X.shape[1] - 1):
+        Tile = Slide.read_region((int(X[i, j]), int(Y[i, j])), 0, (Stride[0], Stride[1]))
+        Tile = np.asarray(Tile)
+        Tile = Tile[:, :, :3]
+        bn = np.sum(Tile[:, :, 0] < 5) + np.sum(np.mean(Tile,axis=2) > 245)
+        if (np.std(Tile[:, :, 0]) + np.std(Tile[:, :, 1]) + np.std(Tile[:, :, 2])) / 3 > 18 and bn < Stride[0] * Stride[
+            1] * 0.3 and roi_mask[i,j]==1:
+            tile_name = img_name.split('.')[0] + '_' + str(X[i, j]) + '_' + str(Y[i, j]) + '_' + str(
+                Stride[0]) + '_' + str(Stride[1]) + '_' + '.png'
+
+            if color_norm == True:
+                try:
+                    Tile = normalizer_g.transform(Tile)
+                except:
+                    print('i=%d,j=%d' % (i, j))
+                    continue
+
+            img = Image.fromarray(Tile)
+            img.save(dest_imagePath + tile_name)
+
+
+def wsi_tiling(File,dest_imagePath,img_name,Tile_size,color_norm=False, tumor_mask=None, debug=False,parallel_running=True):
     since = time.time()
     # open image
     Slide = openslide.OpenSlide(File)
@@ -102,10 +140,18 @@ def wsi_tiling(File,dest_imagePath,img_name,Tile_size,debug=False,parallel_runni
         global debug_g
         debug_g=debug
 
-    if parallel_running==True:
+    if parallel_running==True and tumor_mask==None:
         # parallel-running
         with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
-             for _ in executor.map(parallel_tiling, list(range(X.shape[0]-1)), repeat(X), repeat(Y), repeat(dest_imagePath),repeat(img_name),repeat(Stride),repeat(File)):
+             for _ in executor.map(parallel_tiling, list(range(X.shape[0]-1)), repeat(X), repeat(Y), repeat(dest_imagePath),repeat(img_name),
+                                   repeat(Stride),repeat(File),repeat(color_norm)):
+                 pass
+    elif parallel_running==True and tumor_mask!=None:
+        tumor_mask=plt.imread(tumor_mask+img_name[:-5]+'.png')
+        tumor_mask=transform.resize(tumor_mask,(X.shape[0]-1,X.shape[1]-1),order=0)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
+             for _ in executor.map(parallel_tiling_roi, list(range(X.shape[0]-1)), repeat(X), repeat(Y), repeat(dest_imagePath),repeat(img_name),
+                                   repeat(Stride),repeat(File),repeat(color_norm),repeat(tumor_mask)):
                  pass
     else: # for debug
         for i in range(150,X.shape[0] - 1):
@@ -141,10 +187,14 @@ if __name__=='__main__':
                   '../../data/pan_cancer_tils/data_yonsei_v01/Kang_MSI_WSI_2019_10_07_v2/']
 
         wsi_ext='.mrxs'
+        # tileSize=[50,50] # micro-meters
+        tileSize = [112, 112]  # micro-meters
     elif lee_gastric_slide == True:  ## to tiling lee data
         imagePath = ['../../data/lee_gastric_slide/Stomach_Immunotherapy/']
         destPath = ['../../data/pan_cancer_tils/data_lee_gastric/']
         wsi_ext='.tiff'
+        # tileSize=[50,50] # micro-meters
+        tileSize = [112, 112]  # micro-meters
     elif tcga_coad_read_slide==True:
         imagePath = ['../../data/tcga_coad_slide/tcga_coad/quality_a1/',
                      '../../data/tcga_coad_slide/tcga_coad/quality_a2/',
@@ -157,21 +207,58 @@ if __name__=='__main__':
                     '../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_coad_uncertain/',
                     '../../data/tcga_coad_read_data/coad_read_tissue_tiles/tcga_read/']
         wsi_ext='.svs'
+        # tileSize=[50,50] # micro-meters
+        tileSize = [112, 112]  # micro-meters
 
     elif lee_colon_slide ==True:
-        imagePath = ['Z:/Datasets/Colon_St_Mary_Hospital_SungHak_Lee_Whole_Slide_Image/CRC St. Mary hospital/']
-        destPath = ['../../data/lee_colon_data/all_tiles_tils/']
+        # switch=1-> tils detection tiling
+        # swith=2-> tumor detection tiling
+        # swith=3-> tumor region tiling -> e.g., msi prediction
+        switch=3
+
+        imagePath = ['../../data/Colon_St_Mary_Hospital_SungHak_Lee_Whole_Slide_Image/CRC St. Mary hospital/']
+
         wsi_ext='.tiff'
 
         clinic_info=pd.read_excel('../../data/lee_colon_data/Colorectal cancer dataset.xlsx')
         pid=[i+j for i, j in zip(clinic_info['S no (primary)'].tolist(),clinic_info['Sub no (T)'].tolist())]
         pid2 = [sub.replace('#', '-') for sub in pid if isinstance(sub, str)]
 
+        if switch==1:
+            tileSize = [112, 112]  # micro-meters
+            destPath = ['../../data/lee_colon_data/all_tiles_tils/']
+            color_norm=False
+        elif switch==2:
+            tileSize = [256, 256]  # micro-meters
+            destPath = ['../../data/lee_colon_data/all_tiles_tumor/']
+            color_norm = True
+        elif switch==3:
+            tileSize = [248.6272,248.6272] # note that: msi prediction model trained on this scale
+            #tileSize = [256, 256]  # micro-meters
+            destPath= ['../../data/lee_colon_data/msi_tiles_tumor_no_color_norm/']
+            color_norm=False
+
+            tumor_mask_path='../../data/lee_colon_data/tumor_pred/pred_masks/'
+        else:
+            raise RuntimeError('undefined selection .........')
+
     else:
         raise ValueError('incorrect data selection~~~~~~')
 
-    # tileSize=[50,50] # micro-meters
-    tileSize = [112, 112]  # micro-meters
+    if color_norm==True:
+        reference_path=rela_path+'xhm_deep_learning/functions/macenko_reference_img.png'
+        try:
+            # Initialize the Macenko normalizer
+            reference_img = np.array(
+                Image.open(reference_path).convert('RGB'))
+            normalizer = MacenkoNormalizer()
+            normalizer.fit(reference_img)
+
+            global normalizer_g
+            normalizer_g = normalizer
+        except:
+            print('no given reference image for color normalization~~~~~')
+
     for i in range(len(imagePath)):
         temp_imagePath = imagePath[i]
         dest_imagePath = destPath[i]
@@ -185,7 +272,13 @@ if __name__=='__main__':
                     if pp[:-5] in pid2:
                         file = temp_imagePath + img_name
                         print(img_name)
-                        wsi_tiling(file, dest_imagePath, img_name, tileSize)
+                        if switch==2:
+                            wsi_tiling(file, dest_imagePath, img_name, tileSize, color_norm)
+                        elif switch==3:
+                            wsi_tiling(file, dest_imagePath, img_name, tileSize, color_norm,tumor_mask_path)
+                        else:
+                            raise RuntimeError('undefined options........')
+
                 else:
                     file = temp_imagePath + img_name
                     wsi_tiling(file, dest_imagePath, img_name, tileSize)

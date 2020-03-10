@@ -119,37 +119,67 @@ def wsi_tiling(File,temp_predPath,dest_imagePath,img_name,Tile_size,parallel_run
     print('Mapping complete in {:.0f}m {:.0f}s'.format(
         time_elapsed // 60, time_elapsed % 60))
 
+def wsi_mapping(imagePath,predPath,destPath,tileSize,parallel_running=True):
+    for i in range(len(imagePath)):
+        temp_imagePath = imagePath[i]
+        temp_predPath = predPath[i]
+        dest_imagePath = destPath[i]
+        wsis = sorted(os.listdir(temp_imagePath))
+        for img_name in wsis:
+            if wsi_ext in img_name:
+                if lee_colon==True:   # add this condition, only process tumor slides
+                    temp_split=img_name.split('-')
+                    temp_split[1]=temp_split[1].zfill(6)
+                    pp='-'.join(temp_split)
+                    if pp[:-5] in pid2:
+                        file = temp_imagePath + img_name
+                        print(img_name)
+                        wsi_tiling(file, temp_predPath, dest_imagePath,img_name[:-5], tileSize, parallel_running=parallel_running)
+                else:
+                    file=temp_imagePath+img_name
+                    print(img_name)
+                    wsi_tiling(file, temp_predPath, dest_imagePath,img_name, tileSize, parallel_running=parallel_running)
+
 if __name__=='__main__':
 
-    kang_colon=False
+    kang_colon=True
     lee_gastric=False
-    tcga_coad_read=True
-
+    tcga_coad_read=False
+    global lee_colon
+    lee_colon=False
 
 
     if kang_colon==True:
         ## whole slide image path
-        imagePath=['../../../data/kang_colon_slide/181119/',
-                   '../../../data/kang_colon_slide/181211/',
-                   '../../../data/kang_colon_slide/Kang_MSI_WSI_2019_10_07/']
+        imagePath=[rela_path+'data/kang_colon_slide/181119/',
+                   rela_path+'data/kang_colon_slide/181211/',
+                   rela_path+'data/kang_colon_slide/Kang_MSI_WSI_2019_10_07/']
 
         ## excel file prediction path
-        predPath=['../../../data/pan_cancer_tils/data_yonsei_v01_pred/181119_pred/',
-                  '../../../data/pan_cancer_tils/data_yonsei_v01_pred/181211_pred/',
-                  '../../../data/pan_cancer_tils/data_yonsei_v01_pred/Kang_MSI_WSI_2019_10_07_pred/']
+        predPath=[rela_path+'data/pan_cancer_tils/data_yonsei_v01_pred/181119_pred/',
+                  rela_path+'data/pan_cancer_tils/data_yonsei_v01_pred/181211_pred/',
+                  rela_path+'data/pan_cancer_tils/data_yonsei_v01_pred/Kang_MSI_WSI_2019_10_07_pred/']
 
         ## tils map output path
-        destPath=['../../../data/pan_cancer_tils/data_yonsei_v01_pred/181119/',
-                  '../../../data/pan_cancer_tils/data_yonsei_v01_pred/181211/',
-                  '../../../data/pan_cancer_tils/data_yonsei_v01_pred/Kang_MSI_WSI_2019_10_07/']
+        destPath=[rela_path+'data/pan_cancer_tils/data_yonsei_v01_pred/pred_images0.4/181119/',
+                  rela_path+'data/pan_cancer_tils/data_yonsei_v01_pred/pred_images0.4/181211/',
+                  rela_path+'data/pan_cancer_tils/data_yonsei_v01_pred/pred_images0.4/Kang_MSI_WSI_2019_10_07/']
         wsi_ext='.mrxs'
-        t_g = 0.3  # a key threshold, attentions?
+        #t_g = 0.3  # a key threshold, attentions?
+        t_g = 0.4
+        tileSize = [112, 112]  # micro-meters
+
+        wsi_mapping(imagePath, predPath, destPath, tileSize, parallel_running=True)
     elif lee_gastric==True:
         imagePath=['../../../data/lee_gastric_slide/Stomach_Immunotherapy/']
         predPath=['../../../data/pan_cancer_tils/data_lee_gastric_pred/pred_excels/']
         destPath=['../../../data/pan_cancer_tils/data_lee_gastric_pred/pred_images/']
         wsi_ext='.tiff'
         t_g = 0.3  # a key threshold, attentions?
+        tileSize = [112, 112]  # micro-meters
+
+        wsi_mapping(imagePath, predPath, destPath, tileSize, parallel_running=True)
+
     elif tcga_coad_read==True:
         imagePath=[rela_path+'data/tcga_coad_slide/tcga_coad/quality_a1/',
                    rela_path+'data/tcga_coad_slide/tcga_coad/quality_a2/',
@@ -167,21 +197,61 @@ if __name__=='__main__':
                   rela_path+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps/',
                   rela_path+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps/']
         wsi_ext='.svs'
-        t_g = 0.5  # a key threshold, attentions?
+        t_g = 0.4  # a key threshold, attentions?
+        tileSize = [112, 112]  # micro-meters
+
+        wsi_mapping(imagePath, predPath, destPath, tileSize, parallel_running=True)
+
+    elif lee_colon==True:
+        tils_mapping=True
+        tumor_mapping=False
+
+        imagePath=[rela_path+'data/Colon_St_Mary_Hospital_SungHak_Lee_Whole_Slide_Image/CRC St. Mary hospital/']
+
+        clinic_info = pd.read_excel(rela_path+'data/lee_colon_data/Colorectal cancer dataset.xlsx')
+        pid = [i + j for i, j in zip(clinic_info['S no (primary)'].tolist(), clinic_info['Sub no (T)'].tolist())]
+        global pid2
+        pid2 = [sub.replace('#', '-') for sub in pid if isinstance(sub, str)]
+
+        if tils_mapping==True:
+            predPath = [rela_path + 'data/lee_colon_data/tils_pred/pred_excels/']
+            destPath = [rela_path + 'data/lee_colon_data/tils_pred/pred_images/']
+            wsi_ext = '.tiff'
+            t_g = 0.4  # a key threshold, attentions?
+            tileSize = [112, 112]  # micro-meters
+
+            wsi_mapping(imagePath, predPath, destPath, tileSize, parallel_running=True)
+
+        if tumor_mapping==True:
+            predPath = [rela_path + 'data/lee_colon_data/tumor_pred/pred_excels/']
+            destPath = [rela_path + 'data/lee_colon_data/tumor_pred/pred_images/']
+            wsi_ext = '.tiff'
+            t_g = 0.5  # a key threshold, attentions?
+            tileSize = [256, 256]  # micro-meters
+            wsi_mapping(imagePath, predPath, destPath, tileSize, parallel_running=True)
+
 
     else:
         raise RuntimeError('incorrect selection of dataset........')
 
-    #tileSize=[50,50] # micro-meters
-    tileSize=[112,112] # micro-meters
-    parallel_running=True # True for parallel running
-    for i in range(len(imagePath)):
-        temp_imagePath = imagePath[i]
-        temp_predPath = predPath[i]
-        dest_imagePath = destPath[i]
-        wsis = sorted(os.listdir(temp_imagePath))
-        for img_name in wsis:
-            if wsi_ext in img_name:
-                file=temp_imagePath+img_name
-                print(img_name)
-                wsi_tiling(file, temp_predPath, dest_imagePath,img_name, tileSize, parallel_running=parallel_running)
+
+    # parallel_running=True # True for parallel running
+    # for i in range(len(imagePath)):
+    #     temp_imagePath = imagePath[i]
+    #     temp_predPath = predPath[i]
+    #     dest_imagePath = destPath[i]
+    #     wsis = sorted(os.listdir(temp_imagePath))
+    #     for img_name in wsis:
+    #         if wsi_ext in img_name:
+    #             if lee_colon==True:   # add this condition, only process tumor slides
+    #                 temp_split=img_name.split('-')
+    #                 temp_split[1]=temp_split[1].zfill(6)
+    #                 pp='-'.join(temp_split)
+    #                 if pp[:-5] in pid2:
+    #                     file = temp_imagePath + img_name
+    #                     print(img_name)
+    #                     wsi_tiling(file, temp_predPath, dest_imagePath,img_name[:-5], tileSize, parallel_running=parallel_running)
+    #             else:
+    #                 file=temp_imagePath+img_name
+    #                 print(img_name)
+    #                 wsi_tiling(file, temp_predPath, dest_imagePath,img_name, tileSize, parallel_running=parallel_running)

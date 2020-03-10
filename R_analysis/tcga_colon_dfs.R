@@ -1,4 +1,6 @@
-## purpose: perform univariate variable analysis, e.g., tils densities -> patient survivials (PFS)
+## purpose: perform univariate variable analysis, e.g., tils densities -> patient survivials (dfs)
+
+# analysis on tcga_coad stage ii and iii patients
 # author: Hongming Xu, CCF, 2020
 # email: mxu@ualberta.ca
 
@@ -11,24 +13,23 @@ rela_path='../../../'
 
 
 # patient survivals
-p_data<-read.csv(paste(rela_path,'data/kang_colon_data/','2020_01_08_Colon_MSI_262_survival.csv',sep=""))
+p_data<-read_excel(paste(rela_path,'data/tcga_coad_slide/','tcga_coad_read_kang.xlsx',sep=""))
+p_data<-p_data[!duplicated(p_data$`Patient ID`),]
 
 pid<-vector()
 futime<-vector()
 fustat<-vector()
-for (nn in 1:184) # excluding MSI patients
+for (nn in 1:length(p_data$`Patient ID`)) 
 {
-  pid_temp<-paste(as.character(p_data$patient_group[nn]),'_',as.character(p_data$Patient_ID[nn]),sep="")
-  if (!is.na(p_data$ID[nn]))
-  {
-    pid<-c(pid,pid_temp)
-    futime<-c(futime,as.numeric(p_data$PFS[nn]))
-    fustat<-c(fustat,as.character(p_data$PFS_01[nn]))
-  }
+  pid_temp<-p_data$`Patient ID`[nn]
+  pid<-c(pid,pid_temp)
+  futime<-c(futime,as.numeric(p_data$`Disease Free (Months)`[nn]))
+  fustat<-c(fustat,as.character(p_data$DFS_status_01[nn]))
+  
 }
 
 # tils density path
-my_data<-read_excel(paste(rela_path,'data/pan_cancer_tils/feat_tils/yonsei_colon/','til_density.xlsx',sep=""))
+my_data<-read_excel(paste(rela_path,'data/pan_cancer_tils/feat_tils/tcga_coad/threshold0.4/','til_density0.6.xlsx',sep=""))
 
 # switches for different options
 univ_analysis1=TRUE  # two-class km plots
@@ -43,7 +44,7 @@ if (univ_analysis1==TRUE)
     feat_v<-vector()
     for (pp in 1:length(pid))
     {
-      ind<-which(pid[pp]==as.character(my_data$`patient id`))
+      ind<-which(pid[pp]==as.character(substr(my_data$`patient id`,1,12)))
       feat_v<-c(feat_v,as.numeric(my_data[nn][ind,1]))
     }
     
@@ -52,15 +53,24 @@ if (univ_analysis1==TRUE)
     futime2<-futime[-c(ind_na)]
     fustat2<-fustat[-c(ind_na)]
     pid2<-pid[-c(ind_na)]
-    tt<-quantile(feat_v,0.50) # use median value to divide into high vs low
-    plabel<-(feat_v>tt[1])
+    
+    ind_na2<-which(is.na(futime2))
+    futime3<-futime2[-c(ind_na2)]
+    fustat3<-fustat2[-c(ind_na2)]
+    pid3<-pid2[-c(ind_na2)]
+    feat_v2<-feat_v[-c(ind_na2)]
+    
+    tt<-quantile(feat_v2,0.50) # use median value to divide into high vs low
+    #tt<-0.16
+    print(tt)
+    plabel<-(feat_v2>tt[1])
     plabel[plabel==TRUE]<-'High'
     plabel[plabel==FALSE]<-'Low'
     
     ## plot survival curves
-    data_df<-data.frame("patientID"=Reduce(rbind,pid2))
-    data_df$futime<-futime2
-    data_df$fustat<-fustat2
+    data_df<-data.frame("patientID"=Reduce(rbind,pid3))
+    data_df$futime<-futime3
+    data_df$fustat<-fustat3
     data_df$plabel<-plabel
     
     data_df$futime<-as.numeric(as.character(data_df$futime)) # note that: must be numeric type
@@ -78,12 +88,13 @@ if (univ_analysis1==TRUE)
     #setEPS()
     #postscript("whatever.eps")
     
-    ggsurvplot(fit1,pval = TRUE,
+    survp<-ggsurvplot(fit1,pval = TRUE,
                risk.table = TRUE,
                legend=c(0.8,0.2),
                #legend.labs=c("High (42)","Low (19)"),
                legend.title="Categories",
-               xlab='Time in Days')+ggtitle("Yonsei Colon Cohort")
+               xlab='Time in Months')+ggtitle("TCGA_COAD Cohort")
+    ggsave(file=paste('2_',nn,".png",sep=""),print(survp),path='./tcga_dfs/')
     
     rm(data_df)
   }
@@ -97,7 +108,7 @@ if (univ_analysis2==TRUE)
     feat_v<-vector()
     for (pp in 1:length(pid))
     {
-      ind<-which(pid[pp]==as.character(my_data$`patient id`))
+      ind<-which(pid[pp]==as.character(substr(my_data$`patient id`,1,12)))
       feat_v<-c(feat_v,as.numeric(my_data[nn][ind,1]))
     }
     
@@ -106,16 +117,23 @@ if (univ_analysis2==TRUE)
     futime2<-futime[-c(ind_na)]
     fustat2<-fustat[-c(ind_na)]
     pid2<-pid[-c(ind_na)]
-    ttL<-quantile(feat_v,0.333) # use median value to divide into high vs low
-    ttH<-quantile(feat_v,0.666)
     
-    plabel<-cut(feat_v,breaks=c(-1,ttL,ttH,Inf),labels=c("Low","Mid","High"))
-  
+    ind_na2<-which(is.na(futime2))
+    futime3<-futime2[-c(ind_na2)]
+    fustat3<-fustat2[-c(ind_na2)]
+    pid3<-pid2[-c(ind_na2)]
+    feat_v2<-feat_v[-c(ind_na2)]
+    
+    ttL<-quantile(feat_v2,0.333) # use median value to divide into high vs low
+    ttH<-quantile(feat_v2,0.666)
+    
+    plabel<-cut(feat_v2,breaks=c(-1,ttL,ttH,Inf),labels=c("Low","Mid","High"))
+    
     
     ## plot survival curves
-    data_df<-data.frame("patientID"=Reduce(rbind,pid2))
-    data_df$futime<-futime2
-    data_df$fustat<-fustat2
+    data_df<-data.frame("patientID"=Reduce(rbind,pid3))
+    data_df$futime<-futime3
+    data_df$fustat<-fustat3
     data_df$plabel<-plabel
     
     data_df$futime<-as.numeric(as.character(data_df$futime)) # note that: must be numeric type
@@ -133,46 +151,47 @@ if (univ_analysis2==TRUE)
     #setEPS()
     #postscript("whatever.eps")
     
-    ggsurvplot(fit1,pval = TRUE,
+    survp<-ggsurvplot(fit1,pval = TRUE,
                risk.table = TRUE,
                legend=c(0.8,0.2),
                #legend.labs=c("High (42)","Low (19)"),
                legend.title="Categories",
-               xlab='Time in Days')+ggtitle("Yonsei Colon Cohort")
+               xlab='Time in Days')+ggtitle("TCGA Colon Cohort")
+    ggsave(file=paste('3_',nn,".png",sep=""),print(survp),path='./tcga_dfs/')
     
     rm(data_df)
   }
 }
-  
+
 
 ## 3) use univariate coxph function to perform univarate analysis
 if (univ_analysis3==TRUE)
 {
-  my_pid<-my_data$`patient id`
+  my_pid<-substr(my_data$`patient id`,1,12)
   
-  futime3<-vector()
-  fustat3<-vector()
+  futime4<-vector()
+  fustat4<-vector()
   for (pp in 1:length(my_pid))
   {
     ind<-which(my_pid[pp]==pid)
     if (length(ind)>0)  # in case no patients in the p_data
     {
-      futime3<-c(futime3,futime[ind])
-      fustat3<-c(fustat3,fustat[ind])
+      futime4<-c(futime4,futime[ind[1]])
+      fustat4<-c(fustat4,fustat[ind[1]])
     }
     else
     {
-      futime3<-c(futime3,NA)
-      fustat3<-c(fustat3,NA)
+      futime4<-c(futime4,NA)
+      fustat4<-c(fustat4,NA)
     }
     
   }
-    
-  my_data$futime<-as.numeric(futime3)
-  my_data$fustat<-as.numeric(fustat3)
   
-  ind_na<-which(is.na(my_data$futime))
-  my_data2<-my_data[-ind_na,] # remove rows with NA values
+  my_data$futime<-as.numeric(futime4)
+  my_data$fustat<-as.numeric(fustat4)
+  
+  #ind_na<-which(is.na(my_data$futime))
+  #my_data2<-my_data[-ind_na,] # remove rows with NA values
   
   
   ## to apply the univariate coxph function to multiple covariates at once:
@@ -180,7 +199,7 @@ if (univ_analysis3==TRUE)
   univ_formulas <- sapply(covariates,
                           function(x) as.formula(paste('Surv(futime, fustat)~', x)))
   
-  univ_models <- lapply( univ_formulas, function(x){coxph(x, data = my_data2)})
+  univ_models <- lapply( univ_formulas, function(x){coxph(x, data = my_data)})
   # Extract data 
   univ_results <- lapply(univ_models,
                          function(x){ 
@@ -220,5 +239,5 @@ if (univ_analysis3==TRUE)
 
 
 t=0
-                    
-                    
+
+

@@ -11,7 +11,7 @@ questions: mxu@ualberta.ca
 import os
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 # The GPU id to use, usually either "0" or "1";
-os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2" # use gpu 4
+os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3,4,5,6,7" # use gpu 4
 import sys
 import pandas as pd
 import time
@@ -24,9 +24,9 @@ from Transfer_Learning_PyTorch_V01 import Transfer_Learning_PyTorch_V01         
 
 
 # switch between training & testing & testing_external
-training=True
+training=False
 testing=False
-# testing_ext=False
+testing_ext=True
 
 if __name__=='__main__':
 
@@ -88,3 +88,30 @@ if __name__=='__main__':
         df = pd.DataFrame(data)
         pred_file = model_dir + 'logs.xlsx'
         df.to_excel(pred_file)
+
+    if testing_ext==True:
+        # best_resnet18='resnet18_0_adam_0.0001_64.pt'
+
+
+        lee_colon = True
+
+        if lee_colon == True:
+            test_path = [rela_path+'data/lee_colon_data/all_tiles_tumor/']
+            wsi_path = [rela_path+'data/lee_colon_data/wsi_tumor_files/']
+            output_path = [rela_path+'data/lee_colon_data/tumor_pred/pred_excels/']
+            wsi_ext = '.tiff'
+
+        else:
+            raise RuntimeError('processing dataset selection is not correct~~~~~~~~~')
+
+        for i in range(len(test_path)):
+            start_time = time.time()
+            # best resnet18
+            model_tl = Transfer_Learning_PyTorch_V01(test_dir=test_path[i],
+                                                     model_dir='./models/',
+                                                     model_name='resnet18',
+                                                     batch_size=64, fp=0, op='adam',
+                                                     lr=0.0001, num_workers=10, wsi_path=wsi_path[i], wsi_ext=wsi_ext,
+                                                     output_path=output_path[i])
+            model_tl.test_model_external_temp_tumor()
+            print("---{} minutes---".format((time.time() - start_time) / 60))

@@ -3,7 +3,7 @@ main function to analyze tumor-til-maps
 author: Hongming Xu, 2020, CCF
 email: mxu@ualberta.ca
 
-purpose: analyze tumor invasive margin regions
+purpose: analyze tumor invasive margin regions (including debuging to check if predicted tumor regions are meaningful)
 
 input:
     wsi image
@@ -47,6 +47,36 @@ def overlap_contour(LR2,contours,color):
 
     return LR2
 
+def tumor_mask_generation(file_img,file_tumor,thr,mag=1.25,debug_tumor=False):
+    '''
+    purpose: (1) generate tumor mask for tumor tiling
+             (2) check if tumor prediction is meaningful
+    '''
+    output_masks=relpath+'data/lee_colon_data/tumor_pred/pred_masks/'
+    output_contours=relpath+'data/lee_colon_data/tumor_pred/pred_contours/'
+    # open slide
+    Slide = openslide.OpenSlide(file_img)
+    LR, Objective, pxy = wsi_coarse_read(Slide, mag)  # at 2.5 magnification
+
+    # open tumor mask
+    tumor_mask = plt.imread(file_tumor)
+
+    tumorb = wsi_preprocess_mask_v01(tumor_mask, thr,ratio_nt=5,tht=10)
+
+    img1 = Image.fromarray((tumorb*255).astype('uint8'))
+    img1.save(output_masks + file_img.split('/')[-1][:-5] + '.png')
+
+
+    ## check if tumor prediction is making sense
+    if debug_tumor == True:
+        tumorb = transform.resize(tumorb, LR.shape[0:2], order=0)  # order=0 nearest-neighbor
+        contours = measure.find_contours(tumorb, 0.5)
+        LR2 = LR.copy()
+        LR2 = overlap_contour(LR2, contours, [255, 0, 0])
+
+        img2=Image.fromarray(LR2)
+        img2.save(output_contours+file_img.split('/')[-1][:-5]+'.png')
+
 def tumor_til_analysis(file_img,file_tumor,file_til,thr,mag,ignore_small_inv=False,pp=0):
     # open slide
     Slide=openslide.OpenSlide(file_img)
@@ -62,9 +92,10 @@ def tumor_til_analysis(file_img,file_tumor,file_til,thr,mag,ignore_small_inv=Fal
 
     # open tumor mask
     tumor_mask=plt.imread(file_tumor)
-    if tumor_mask.shape!=LR.shape[0:2]:
+    if tumor_mask.shape[0:2] !=LR.shape[0:2]:
         tumor_mask=transform.resize(tumor_mask,LR.shape[0:2],order=1) # order=0 nearest-neighbor
     tumorb=wsi_preprocess_mask_v01(tumor_mask,thr)
+
 
     # locate tumor invasive margin regions
     pr_mag=(Objective/mag)*pxy[0] # pixel resolution at mag, assume pxy[0]=pxy[1] in therory
@@ -163,6 +194,8 @@ def tumor_til_analysis(file_img,file_tumor,file_til,thr,mag,ignore_small_inv=Fal
             im.save(relpath+'data/pan_cancer_tils/contours_im/yonsei_im/' + file_img.split('/')[-2]+'_'+file_img.split('/')[-1] + '.png')
         elif tcga_coad==True:
             im.save(relpath + 'data/pan_cancer_tils/contours_im/tcga_coad/' + file_img.split('/')[-1] + '.png')
+        elif lee_colon==True:
+            im.save(relpath + 'data/pan_cancer_tils/contours_im/lee_colon/' + file_img.split('/')[-1] + '.png')
         else:
             raise RuntimeError('incorrect selection....')
 
@@ -184,9 +217,11 @@ def tumor_til_analysis(file_img,file_tumor,file_til,thr,mag,ignore_small_inv=Fal
     # f.clear()
     # plt.close()
 
+# --- switches to process different cancer datasets
+yonsei_colon=True
+tcga_coad=False
+lee_colon=False
 
-yonsei_colon=False
-tcga_coad=True
 if __name__=='__main__':
 
     if yonsei_colon==True:
@@ -201,44 +236,70 @@ if __name__=='__main__':
                      #'../../../data/kang_colon_data/predictions_tumor/dl_model_v01/Kang_MSI_WSI_2019_10_07/']
 
         ## til prediction mask
-        tilPath= [relpath+'data/pan_cancer_tils/data_yonsei_v01_pred/181119/',
-                  relpath+'data/pan_cancer_tils/data_yonsei_v01_pred/181211/']
+        tilPath= [relpath+'data/pan_cancer_tils/data_yonsei_v01_pred/pred_images0.3/181119/',
+                  relpath+'data/pan_cancer_tils/data_yonsei_v01_pred/pred_images0.3/181211/']
                   #'../../../data/pan_cancer_tils/data_yonsei_v01_pred//Kang_MSI_WSI_2019_10_07/']
 
-        feat_out = relpath + 'data/pan_cancer_tils/feat_tils/yonsei_colon/' + 'til_density.xlsx'
+        feat_out0 = relpath + 'data/pan_cancer_tils/feat_tils/yonsei_colon/threshold0.3/'
         thr = 0.5  # threshold on tumor prediction map
         mag = 0.078125 * 2
         wsi_type='.mrxs'
 
-        ignore_small_inv=False ## visually all tumors have invasive margins
+        ignore_small_inv=True ## visually all tumors have invasive margins
+        tils_feats = True  # False-> tumor mask generation
     elif tcga_coad==True:
-        imagePath=[relpath+'data/tcga_coad_slide/tcga_coad/quality_a1/',
-                   relpath+'data/tcga_coad_slide/tcga_coad/quality_a2/',
-                   relpath+'data/tcga_coad_slide/tcga_coad/quality_b/',
-                   relpath+'data/tcga_coad_slide/tcga_coad/quality_uncertain/']
-        tumorPath=[relpath+'data/tcga_coad_read_data/coad_tumor_preds/resnet18_tcga_v2_tils/',
-                   relpath+'data/tcga_coad_read_data/coad_tumor_preds/resnet18_tcga_v2_tils/',
-                   relpath+'data/tcga_coad_read_data/coad_tumor_preds/resnet18_tcga_v2_tils/',
-                   relpath+'data/tcga_coad_read_data/coad_tumor_preds/resnet18_tcga_v2_tils/']
-        tilPath=[relpath+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.5/',
-                 relpath+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.5/',
-                 relpath+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.5/',
-                 relpath+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.5/']
+        imagePath = [relpath+'data/tcga_coad_slide/tcga_coad/quality_a1/',
+                    relpath+'data/tcga_coad_slide/tcga_coad/quality_a2/',
+                    relpath+'data/tcga_coad_slide/tcga_coad/quality_b/',
+                    relpath+'data/tcga_coad_slide/tcga_coad/quality_uncertain/']
+        tumorPath = [relpath+'data/tcga_coad_read_data/coad_tumor_preds/resnet18_tcga_v2_tils/',
+                    relpath+'data/tcga_coad_read_data/coad_tumor_preds/resnet18_tcga_v2_tils/',
+                    relpath+'data/tcga_coad_read_data/coad_tumor_preds/resnet18_tcga_v2_tils/',
+                    relpath+'data/tcga_coad_read_data/coad_tumor_preds/resnet18_tcga_v2_tils/']
+        tilPath = [relpath+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.5/',
+                  relpath+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.5/',
+                  relpath+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.5/',
+                  relpath+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.5/']
         feat_out0 = relpath + 'data/pan_cancer_tils/feat_tils/tcga_coad/'
         thr = 0.5  # threshold on tumor prediction map
         mag = 0.625
         wsi_type='.svs'
 
         ignore_small_inv = True # visually some tumors do not have invasive margins
-        inv_p=[0.4,0.5,0.6,0.7]
+        #inv_p = [0.4,0.5,0.6,0.7]
 
         # read excel table
-        df=pd.read_excel(relpath+'data/tcga_coad_slide/TCGA-COAD_patient_info.xlsx')
+        df = pd.read_excel(relpath+'data/tcga_coad_slide/TCGA-COAD_patient_info.xlsx')
+        tils_feats = True  # False-> tumor mask generation
+    elif lee_colon==True:
+        imagePath = [relpath+'data/Colon_St_Mary_Hospital_SungHak_Lee_Whole_Slide_Image/CRC St. Mary hospital/']
+        tumorPath = [relpath+'data/lee_colon_data/tumor_pred/pred_images/']
+        tilPath = [relpath+'data/lee_colon_data/tils_pred/pred_images/']
+
+        feat_out0 = relpath+'data/pan_cancer_tils/feat_tils/lee_colon/'
+        thr = 0.6 # threshold on tumor prediction map
+        mag = 0.625
+        wsi_type = '.tiff'
+
+        ignore_small_inv = True  # visually some tumors do not have invasive margins
+        #inv_p = [0.4, 0.5, 0.6, 0.7]
+
+        clinic_info = pd.read_excel('../../data/lee_colon_data/Colorectal cancer dataset.xlsx')
+        pid = [i + j for i, j in zip(clinic_info['S no (primary)'].tolist(), clinic_info['Sub no (T)'].tolist())]
+        pid2 = [sub.replace('#', '-') for sub in pid if isinstance(sub, str)]
+
+        tils_feats=True # False-> tumor mask generation
     else:
         raise RuntimeError("incorrect dataset switches....see dataset selection!!!")
 
+    if ignore_small_inv == True:
+        inv_p = [0.4, 0.5, 0.6, 0.7]
+    else:
+        inv_p = [0]
+
     global debug
     debug = False
+
     for pp in inv_p:
         feat_out=feat_out0+ 'til_density' + str(pp)+'.xlsx'
 
@@ -284,16 +345,31 @@ if __name__=='__main__':
                         except:
                             print(f"{img_name} not in the excel file patient info")
                             continue
+                    elif lee_colon==True:
+                        file_img = t_imagePath + img_name
+                        file_tumor = t_tumorPath + img_name[:-5] + '_gray.png'
+                        file_til = t_tilPath + img_name[:-5] + '_color.png'
+
+                        temp_split = img_name.split('-')
+                        temp_split[1] = temp_split[1].zfill(6)
+                        pp_id = '-'.join(temp_split)
+
+                        if pp_id[:-5] in pid2:
+                            temp_pid=img_name[:-5]
+                            print(img_name)
+                        else:
+                            continue
+
                     else:
                         raise RuntimeError('undefined selection~~~~~~~')
 
+                    if tils_feats==True:
+                        tumor_til_analysis(file_img,file_tumor,file_til,thr,mag,ignore_small_inv,pp)
+                        patient_id.append(temp_pid)
+                    else:
+                        # tumor mask
+                        tumor_mask_generation(file_img, file_tumor, thr, mag=1.25/2, debug_tumor=True)
 
-                    tumor_til_analysis(file_img,file_tumor,file_til,thr,mag,ignore_small_inv,pp)
-
-                    #if pat_add==True:
-                    patient_id.append(temp_pid)
-                    #else:
-                    #    print(f"skip patient {temp_pid} due to too small invarive margin regions..")
 
 
         ## only first run--save features
