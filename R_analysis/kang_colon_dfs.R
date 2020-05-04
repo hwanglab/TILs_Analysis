@@ -28,17 +28,17 @@ for (nn in 1:184) # excluding MSI patients
 }
 
 # tils density path
-my_data<-read_excel(paste(rela_path,'data/pan_cancer_tils/feat_tils/yonsei_colon/threshold0.3/','til_density.xlsx',sep=""))
+my_data<-read_excel(paste(rela_path,'data/pan_cancer_tils/feat_tils/yonsei_colon/threshold0.4/','til_density0.4.xlsx',sep=""))
 
 # switches for different options
 univ_analysis1=TRUE  # two-class km plots
-univ_analysis2=TRUE   # three-class km plots
+univ_analysis2=FALSE   # three-class km plots
 univ_analysis3=TRUE  # forest plot & univariate cxo proportional hazards analysis
 
 ## 1) use each feature to divide patients into two groups, then plot km curves for univariate analysis
 if (univ_analysis1==TRUE)
 {
-  for (nn in c("feat0","feat1","feat2","feat3","feat4","feat5","feat6")) # 5 features
+  for (nn in c("feat0","feat1","feat2","feat3","feat4","feat5","feat6","feat7")) # 5 features
   {
     feat_v<-vector()
     for (pp in 1:length(pid))
@@ -52,7 +52,9 @@ if (univ_analysis1==TRUE)
     futime2<-futime[-c(ind_na)]
     fustat2<-fustat[-c(ind_na)]
     pid2<-pid[-c(ind_na)]
-    tt<-quantile(feat_v,0.50) # use median value to divide into high vs low
+    
+    #tt<-quantile(feat_v,0.50) # use median value to divide into high vs low
+    tt<-0.15
     plabel<-(feat_v>tt[1])
     plabel[plabel==TRUE]<-'High'
     plabel[plabel==FALSE]<-'Low'
@@ -83,7 +85,7 @@ if (univ_analysis1==TRUE)
                legend=c(0.8,0.2),
                #legend.labs=c("High (42)","Low (19)"),
                legend.title="Categories",
-               xlab='Time in Days')+ggtitle("Yonsei Colon Cohort")
+               xlab='Time in Months')+ggtitle("Yonsei Colon Cohort")
     
     ggsave(file=paste('2_',nn,".png",sep=""),print(survp),path='./yonsei_dfs/')
     

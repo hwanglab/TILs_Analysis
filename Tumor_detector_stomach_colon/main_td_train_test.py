@@ -11,7 +11,7 @@ questions: mxu@ualberta.ca
 import os
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
 # The GPU id to use, usually either "0" or "1";
-os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3,4,5,6,7" # use gpu 4
+os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2" # use gpu 4
 import sys
 import pandas as pd
 import time
@@ -20,7 +20,7 @@ import argparse
 rela_path='../../../'
 sys.path.insert(0,rela_path+'xhm_deep_learning/models')
 sys.path.insert(0,rela_path+'xhm_deep_learning/functions')
-from Transfer_Learning_PyTorch_V01 import Transfer_Learning_PyTorch_V01             # Transfer_Learning is my defined class
+from Transfer_Learning_PyTorch import Transfer_Learning_PyTorch             # Transfer_Learning is my defined class
 
 
 # switch between training & testing & testing_external
@@ -64,7 +64,7 @@ if __name__=='__main__':
                         bs = batch_size[b]
 
                         start_time = time.time()
-                        model_tl = Transfer_Learning_PyTorch_V01(load_data, data_dir, model_dir, model_name[0], bs,
+                        model_tl = Transfer_Learning_PyTorch(load_data, data_dir, model_dir, model_name[0], bs,
                                                                  num_workers, epochs,
                                                                  imagenet_init, fp, op, lr, num_early_stoping, zscore)
 
@@ -91,27 +91,33 @@ if __name__=='__main__':
 
     if testing_ext==True:
         # best_resnet18='resnet18_0_adam_0.0001_64.pt'
+        lee_colon = False
+        tcga_read = False
+        tcga_coad = True
+        cuda_id=0
+        class_name=['adimuc','strmus','tumstu']
+        class_interest=2
 
-
-        lee_colon = True
-
-        if lee_colon == True:
-            test_path = [rela_path+'data/lee_colon_data/all_tiles_tumor/']
-            wsi_path = [rela_path+'data/lee_colon_data/wsi_tumor_files/']
-            output_path = [rela_path+'data/lee_colon_data/tumor_pred/pred_excels/']
-            wsi_ext = '.tiff'
-
+        if tcga_read==True:
+            wsi_path=[rela_path+'data/tcga_read_slide/dataset/']
+            output_path=[rela_path+'data/tcga_coad_read_data/read_tumor_preds/']
+            wsi_ext='.svs'
+        elif tcga_coad==True:
+            wsi_path=[rela_path+'data/tcga_coad_slide/tcga_coad/quality_uncertain/']
+            output_path=['./']
+            wsi_ext='.svs'
         else:
             raise RuntimeError('processing dataset selection is not correct~~~~~~~~~')
 
-        for i in range(len(test_path)):
+        for i in range(len(wsi_path)):
             start_time = time.time()
             # best resnet18
-            model_tl = Transfer_Learning_PyTorch_V01(test_dir=test_path[i],
-                                                     model_dir='./models/',
-                                                     model_name='resnet18',
-                                                     batch_size=64, fp=0, op='adam',
-                                                     lr=0.0001, num_workers=10, wsi_path=wsi_path[i], wsi_ext=wsi_ext,
-                                                     output_path=output_path[i])
-            model_tl.test_model_external_temp_tumor()
+            model_tl = Transfer_Learning_PyTorch(model_dir='./models/',
+                                                     model_name='resnet18', batch_size=64, fp=0, op='adam',
+                                                     lr=0.0001, num_workers=20, wsi_path=wsi_path[i], wsi_ext=wsi_ext,
+                                                     output_path=output_path[i],
+                                                     cuda_id=cuda_id, class_num=len(class_name),
+                                                     class_interest=class_interest, tile_size=[256, 256])
+            model_tl.test_end_to_end()
+
             print("---{} minutes---".format((time.time() - start_time) / 60))

@@ -33,13 +33,13 @@ my_data<-read_excel(paste(rela_path,'data/pan_cancer_tils/feat_tils/tcga_coad/th
 
 # switches for different options
 univ_analysis1=TRUE  # two-class km plots
-univ_analysis2=TRUE   # three-class km plots
+univ_analysis2=FALSE   # three-class km plots
 univ_analysis3=TRUE  # forest plot & univariate cxo proportional hazards analysis
 
 ## 1) use each feature to divide patients into two groups, then plot km curves for univariate analysis
 if (univ_analysis1==TRUE)
 {
-  for (nn in c("feat0","feat1","feat2","feat3","feat4","feat5","feat6")) # 5 features
+  for (nn in c("feat0","feat1","feat2","feat3","feat4","feat5","feat6","feat7")) # 5 features
   {
     feat_v<-vector()
     for (pp in 1:length(pid))
@@ -60,8 +60,8 @@ if (univ_analysis1==TRUE)
     pid3<-pid2[-c(ind_na2)]
     feat_v2<-feat_v[-c(ind_na2)]
     
-    tt<-quantile(feat_v2,0.50) # use median value to divide into high vs low
-    #tt<-0.16
+    #tt<-quantile(feat_v2,0.50) # use median value to divide into high vs low
+    tt<-0.15
     print(tt)
     plabel<-(feat_v2>tt[1])
     plabel[plabel==TRUE]<-'High'
@@ -103,7 +103,7 @@ if (univ_analysis1==TRUE)
 ## 2) three-levels KM plots
 if (univ_analysis2==TRUE)
 {
-  for (nn in c("feat0","feat1","feat2","feat3","feat4","feat5","feat6")) # 5 features
+  for (nn in c("feat0","feat1","feat2","feat3","feat4","feat5","feat6","feat7")) # 5 features
   {
     feat_v<-vector()
     for (pp in 1:length(pid))
@@ -195,7 +195,7 @@ if (univ_analysis3==TRUE)
   
   
   ## to apply the univariate coxph function to multiple covariates at once:
-  covariates <- c("feat0", "feat1",  "feat2", "feat3", "feat4","feat5","feat6")
+  covariates <- c("feat0", "feat1",  "feat2", "feat3", "feat4","feat5","feat6","feat7")
   univ_formulas <- sapply(covariates,
                           function(x) as.formula(paste('Surv(futime, fustat)~', x)))
   

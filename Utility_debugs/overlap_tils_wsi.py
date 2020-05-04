@@ -16,10 +16,12 @@ from skimage.io import imsave
 import numpy as np
 import sys
 import matplotlib.pyplot as plt
-sys.path.insert(0,'../../../xhm_deep_learning/functions')
+
+rela_path='../../../'
+sys.path.insert(0,rela_path+'xhm_deep_learning/functions')
 from read_wsi_mag import read_wsi_mag
 
-def save_wsi_tils(File,pred_file):
+def save_wsi_tils(File,pred_file,output):
     since = time.time()
     LR=read_wsi_mag(File,1.25/2)
 
@@ -30,7 +32,7 @@ def save_wsi_tils(File,pred_file):
 
     LR2=LR.copy()
     LR2[pred_mask3!=0]=[0,0,255]
-    imsave(pred_file.split('/')[-1] + '.png',LR2)
+    imsave(output+pred_file.split('/')[-1] + '.png',LR2)
 
     # f = plt.figure()
     # plt.imshow(LR)
@@ -45,14 +47,20 @@ def save_wsi_tils(File,pred_file):
 
 
 if __name__=='__main__':
-    imagePath=['../../../data/kang_colon_slide/181119/']
-    destPath=['../../../data/pan_cancer_tils/data_yonsei_v01_pred/181119/']
+    imagePath=[rela_path+'data/kang_colon_slide/181119/',
+               rela_path+'data/kang_colon_slide/181211/']
+    destPath=[rela_path+'data/pan_cancer_tils/data_yonsei_v01_pred/pred_images0.4/181119/',
+              rela_path+'data/pan_cancer_tils/data_yonsei_v01_pred/pred_images0.4/181211/']
+    outputPath=[rela_path+'data/pan_cancer_tils/data_yonsei_v01_pred/wsi_tils0.4_contours/181119/',
+              rela_path+'data/pan_cancer_tils/data_yonsei_v01_pred/wsi_tils0.4_contours/181211/',]
     for i in range(len(imagePath)):
         temp_imagePath = imagePath[i]
         dest_imagePath = destPath[i]
+        output_imagePath = outputPath[i]
         wsis = sorted(os.listdir(temp_imagePath))
-        for img_name in wsis[:15]:
+        for img_name in wsis:
             if '.mrxs' in img_name:
                 file=temp_imagePath+img_name
                 pred=dest_imagePath+img_name.split('.')[0]+'_color.png'
-                save_wsi_tils(file,pred)
+
+                save_wsi_tils(file,pred,output_imagePath)

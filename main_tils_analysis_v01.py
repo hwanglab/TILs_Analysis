@@ -31,6 +31,7 @@ import time
 from tqdm import tqdm
 from skimage import measure, transform, morphology
 import sys
+from Utility_debugs.iterative_erosion import iterative_erosion
 
 relpath='../../' # the relative path other folders that are used
 sys.path.insert(0,relpath+'xhm_deep_learning/functions')
@@ -115,7 +116,7 @@ def tumor_til_analysis(file_img,file_tumor,file_til,thr,mag,ignore_small_inv=Fal
 
     til_map2 = transform.resize(til_map, LR.shape, order=0)
     til_map2=(til_map2*255).astype('uint8')
-    til_map2 = overlap_contour(til_map2,contours,[255,255,255])
+    til_map2 = overlap_contour(til_map2,contours,[255,255,0])
     color = [[0, 255, 0], [0, 0, 255], [0, 255, 255], [128, 128, 0]]
 
 
@@ -157,6 +158,9 @@ def tumor_til_analysis(file_img,file_tumor,file_til,thr,mag,ignore_small_inv=Fal
         feat['feat5'].append(np.sum(np.logical_and(tumorb_inv_inverse,til_mask))/np.sum(tumorb_inv_inverse))
         feat['feat6'].append(np.sum(np.logical_and(tumorb_center,til_mask))/np.sum(tumorb_center))
 
+        tumorb_core = iterative_erosion(tumorb, 0.25)  # 25% of the whole tumor
+        feat['feat7'].append(np.sum(np.logical_and(tumorb_core, til_mask)) / np.sum(tumorb_core))
+
         contours=measure.find_contours(tumorb_center,0.5)
         LR2=overlap_contour(LR2,contours,[255,255,255])
 
@@ -169,8 +173,12 @@ def tumor_til_analysis(file_img,file_tumor,file_til,thr,mag,ignore_small_inv=Fal
         feat['feat5'].append(np.sum(np.logical_and(tumorb_inv_inverse, til_mask)) / np.sum(tumorb_inv_inverse))
         feat['feat6'].append(np.sum(np.logical_and(tumorb_center, til_mask)) / np.sum(tumorb_center))
 
+        tumorb_core = iterative_erosion(tumorb,0.25) # 25% of the whole tumor
+        feat['feat7'].append(np.sum(np.logical_and(tumorb_core,til_mask))/np.sum(tumorb_core))
+
         contours = measure.find_contours(tumorb_center, 0.5)
         LR2 = overlap_contour(LR2, contours, [255, 255, 255])
+        til_map2 = overlap_contour(til_map2,contours, [255,255,255])
 
         for ind,k in enumerate(pp_mar):
             selem=np.ones((round(k*2+1),round(k*2+1)),dtype=np.uint8)
@@ -185,14 +193,17 @@ def tumor_til_analysis(file_img,file_tumor,file_til,thr,mag,ignore_small_inv=Fal
                 contours = measure.find_contours(temp_inv_mask, 0.5)
                 LR2=overlap_contour(LR2,contours,color[ind])
 
-                til_map2 = overlap_contour(til_map2, contours, [255,255,255])
+                til_map2 = overlap_contour(til_map2, contours, color[ind])
 
 
     if debug==True:
         im=Image.fromarray(LR2)
+        im2 = Image.fromarray(til_map2)
         if yonsei_colon==True:
             im.save(relpath+'data/pan_cancer_tils/contours_im/yonsei_im/' + file_img.split('/')[-2]+'_'+file_img.split('/')[-1] + '.png')
-        elif tcga_coad==True:
+            im2.save(relpath + 'data/pan_cancer_tils/contours_im/yonsei_im/' + file_img.split('/')[-2] + '_' +
+                    file_img.split('/')[-1] + 'til.png')
+        elif tcga_coad1==True:
             im.save(relpath + 'data/pan_cancer_tils/contours_im/tcga_coad/' + file_img.split('/')[-1] + '.png')
         elif lee_colon==True:
             im.save(relpath + 'data/pan_cancer_tils/contours_im/lee_colon/' + file_img.split('/')[-1] + '.png')
@@ -201,25 +212,62 @@ def tumor_til_analysis(file_img,file_tumor,file_til,thr,mag,ignore_small_inv=Fal
 
     #return True
 
-    ## plot figure and contours on figures
-    # f=plt.figure()
-    # plt.imshow(LR)
-    # plt.contour(tumorb, [0.5], colors=['yellow'],linewidths=0.5)
-    # colors=['red','blue','green','cyan']
+    # ## plot figure and contours on figures for paper
+    # LR2 = LR.copy()
+    #
+    # #plt.imshow(LR2)
+    # # [r2, c2] = np.where(tumorb > 0.5)
+    # # plt.plot(c2, r2, 'y.', markersize=0.1)
+    # #
+    # # [r4, c4] = np.where(inv_mask > 0.5)
+    # # plt.plot(c4, r4, 'b.', markersize=0.1)
+    # #
+    # [r, c] = np.where(til_map2[:, :, 0])
+    # LR2[r, c, 0] = 128
+    # LR2[r, c, 1] = 128
+    # LR2[r, c, 2] = 0
+    # #plt.plot(c, r, 'c.', markersize=0.1)
+    # #plt.imshow(LR)
+    # #[r, c] = np.where(til_map2[:, :, 0])
+    # #plt.plot(c, r, 'c.', markersize=0.1)
+    # #f=plt.figure()
+    # #plt.imshow(LR)
+    #
+    # #plt.contour(tumorb, [0.5], colors=['red'],linewidths=0.5)
+    # #colors=['yellow','blue','green','cyan']
+    # contours = measure.find_contours(tumorb, 0.5)
+    # LR2 = overlap_contour(LR2, contours, [255, 0, 0])
+    # color = [[0, 255, 0], [0, 0, 255], [0, 255, 255], [0, 0, 0]]
     # for ind,k in enumerate(pp_mar):
     #     selem=np.ones((round(k*2+1),round(k*2+1)),dtype=np.uint8)
     #     tumorb_inv=morphology.binary_dilation(tumorb,selem)
     #     inv_mask=np.logical_xor(tumorb,tumorb_inv)
     #     inv_mask=np.logical_and(inv_mask,tissue_mask)
-    #     plt.contour(np.logical_or(inv_mask,tumorb), [0.5], colors=colors[ind],linewidths=0.5)
+    #     #plt.contour(np.logical_or(inv_mask,tumorb), [0.5], colors=colors[ind],linewidths=0.5)
+    #     temp_inv_mask = np.logical_or(inv_mask, tumorb)
+    #     contours = measure.find_contours(temp_inv_mask, 0.5)
+    #     LR2 = overlap_contour(LR2, contours, color[ind])
     #
-    # plt.savefig('../../../data/pan_cancer_tils/debug/' + file_img.split('/')[-2]+'_',file_img.split('/')[-1] + '.png')
-    # f.clear()
-    # plt.close()
+    # selem_inside = np.ones((round(pp_mar[0] * 2 + 1), round(pp_mar[0] * 2 + 1)), dtype=np.uint8)
+    # tumorb_center = morphology.binary_erosion(tumorb, selem_inside)
+    # contours = measure.find_contours(tumorb_center, 0.5)
+    # LR2 = overlap_contour(LR2, contours, [255, 255, 0])
+    #
+    # tumorb_core = iterative_erosion(tumorb, 0.25)  # 25% of the whole tumor
+    # contours = measure.find_contours(tumorb_core, 0.5)
+    # LR2 = overlap_contour(LR2, contours, [255, 255, 255])
+    #
+    # im = Image.fromarray(LR2)
+    # im.save('./' + file_img.split('/')[-1] + '.png')
+    # #
+    # # plt.savefig('../../../data/pan_cancer_tils/debug/' + file_img.split('/')[-2]+'_',file_img.split('/')[-1] + '.png')
+    # # f.clear()
+    # # plt.close()
 
 # --- switches to process different cancer datasets
-yonsei_colon=True
-tcga_coad=False
+yonsei_colon=False
+tcga_coad1=False   # used the patient stage information downloaed by myself
+tcga_coad2=True    # used the patient stage information provided by Dr.kang
 lee_colon=False
 
 if __name__=='__main__':
@@ -236,40 +284,48 @@ if __name__=='__main__':
                      #'../../../data/kang_colon_data/predictions_tumor/dl_model_v01/Kang_MSI_WSI_2019_10_07/']
 
         ## til prediction mask
-        tilPath= [relpath+'data/pan_cancer_tils/data_yonsei_v01_pred/pred_images0.3/181119/',
-                  relpath+'data/pan_cancer_tils/data_yonsei_v01_pred/pred_images0.3/181211/']
+        tilPath= [relpath+'data/pan_cancer_tils/data_yonsei_v01_pred/pred_images0.4/181119/',
+                  relpath+'data/pan_cancer_tils/data_yonsei_v01_pred/pred_images0.4/181211/']
                   #'../../../data/pan_cancer_tils/data_yonsei_v01_pred//Kang_MSI_WSI_2019_10_07/']
 
-        feat_out0 = relpath + 'data/pan_cancer_tils/feat_tils/yonsei_colon/threshold0.3/'
+        feat_out0 = relpath + 'data/pan_cancer_tils/feat_tils/yonsei_colon/threshold0.4/'
         thr = 0.5  # threshold on tumor prediction map
         mag = 0.078125 * 2
         wsi_type='.mrxs'
 
         ignore_small_inv=True ## visually all tumors have invasive margins
-        tils_feats = True  # False-> tumor mask generation
-    elif tcga_coad==True:
+        tils_feats = True      # False-> tumor mask generation
+    elif tcga_coad1 or tcga_coad2==True:
         imagePath = [relpath+'data/tcga_coad_slide/tcga_coad/quality_a1/',
-                    relpath+'data/tcga_coad_slide/tcga_coad/quality_a2/',
-                    relpath+'data/tcga_coad_slide/tcga_coad/quality_b/',
-                    relpath+'data/tcga_coad_slide/tcga_coad/quality_uncertain/']
+                     relpath+'data/tcga_coad_slide/tcga_coad/quality_a2/',
+                     relpath+'data/tcga_coad_slide/tcga_coad/quality_b/',
+                     relpath+'data/tcga_coad_slide/tcga_coad/quality_uncertain/',
+                     relpath+'data/tcga_read_slide/dataset/'] # add tcga_read here
         tumorPath = [relpath+'data/tcga_coad_read_data/coad_tumor_preds/resnet18_tcga_v2_tils/',
-                    relpath+'data/tcga_coad_read_data/coad_tumor_preds/resnet18_tcga_v2_tils/',
-                    relpath+'data/tcga_coad_read_data/coad_tumor_preds/resnet18_tcga_v2_tils/',
-                    relpath+'data/tcga_coad_read_data/coad_tumor_preds/resnet18_tcga_v2_tils/']
+                     relpath+'data/tcga_coad_read_data/coad_tumor_preds/resnet18_tcga_v2_tils/',
+                     relpath+'data/tcga_coad_read_data/coad_tumor_preds/resnet18_tcga_v2_tils/',
+                     relpath+'data/tcga_coad_read_data/coad_tumor_preds/resnet18_tcga_v2_tils/',
+                     relpath+'data/tcga_coad_read_data/read_tumor_preds/']
         tilPath = [relpath+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.5/',
-                  relpath+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.5/',
-                  relpath+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.5/',
-                  relpath+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.5/']
+                   relpath+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.5/',
+                   relpath+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.5/',
+                   relpath+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.5/',
+                   relpath+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.5/']
         feat_out0 = relpath + 'data/pan_cancer_tils/feat_tils/tcga_coad/'
         thr = 0.5  # threshold on tumor prediction map
         mag = 0.625
         wsi_type='.svs'
 
         ignore_small_inv = True # visually some tumors do not have invasive margins
-        #inv_p = [0.4,0.5,0.6,0.7]
 
         # read excel table
-        df = pd.read_excel(relpath+'data/tcga_coad_slide/TCGA-COAD_patient_info.xlsx')
+        if tcga_coad1==True:
+            df = pd.read_excel(relpath+'data/tcga_coad_slide/TCGA-COAD_patient_info.xlsx')
+        elif tcga_coad2==True:
+            df = pd.read_excel(relpath + 'data/tcga_coad_slide/tcga_coad_read_kang.xlsx')
+        else:
+            raise RuntimeError('undefined tcga selection')
+
         tils_feats = True  # False-> tumor mask generation
     elif lee_colon==True:
         imagePath = [relpath+'data/Colon_St_Mary_Hospital_SungHak_Lee_Whole_Slide_Image/CRC St. Mary hospital/']
@@ -293,7 +349,18 @@ if __name__=='__main__':
         raise RuntimeError("incorrect dataset switches....see dataset selection!!!")
 
     if ignore_small_inv == True:
-        inv_p = [0.4, 0.5, 0.6, 0.7]
+        #inv_p = [0.4, 0.5, 0.6, 0.7]
+        if yonsei_colon==True:
+            inv_p=[0.4]
+        elif lee_colon==True:
+            inv_p=[0.5]
+        elif tcga_coad1==True:
+            inv_p=[0.6]
+        elif tcga_coad2==True:
+            inv_p = [0.5, 0.6]
+        else:
+            pass
+
     else:
         inv_p = [0]
 
@@ -304,6 +371,7 @@ if __name__=='__main__':
         feat_out=feat_out0+ 'til_density' + str(pp)+'.xlsx'
 
         patient_id=[]
+        patient_stage=[]
         global feat
         feat={}
         feat['feat0']=[] # tils in whole tumor
@@ -313,13 +381,14 @@ if __name__=='__main__':
         feat['feat4']=[] # tils in 500um im
         feat['feat5']=[] # tils in inverse 200um im
         feat['feat6']=[] # tils in tumor center
+        feat['feat7']=[] # tils in tumor core, e.g., 0.25% of whole tumor
 
-        for i in range(len(imagePath)):
+        for i in range(3,len(imagePath)): # tcga-3 paper figure image
             t_imagePath=imagePath[i]
             t_tumorPath=tumorPath[i]
             t_tilPath=tilPath[i]
             wsis=sorted(os.listdir(t_imagePath))
-            for img_name in wsis:
+            for img_name in wsis[12:]: # wsis[12:] paper figure image
                 if wsi_type in img_name:
                     if yonsei_colon==True:
                         file_img=t_imagePath+img_name
@@ -327,7 +396,7 @@ if __name__=='__main__':
                         file_til=t_tilPath+img_name.split('.')[0]+'_color.png'
                         temp_pid=t_imagePath.split('/')[-2]+'_'+img_name.split('.')[0]
 
-                    elif tcga_coad==True:
+                    elif tcga_coad1==True:
                         file_img = t_imagePath + img_name
                         file_tumor = t_tumorPath + img_name[0:23] + '.png'
                         file_til = t_tilPath + img_name[0:23] + '_color.png'
@@ -341,6 +410,23 @@ if __name__=='__main__':
                                     continue
                             else:
                                 print(f"{img_name} has no stage info {df['stage_event_pathologic_stage'][ind]}")
+                                continue
+                        except:
+                            print(f"{img_name} not in the excel file patient info")
+                            continue
+                    elif tcga_coad2==True:
+                        file_img = t_imagePath + img_name
+                        #file_tumor = t_tumorPath + img_name[0:23] + '_gray.png'
+                        file_tumor = t_tumorPath + img_name[0:23] + '.png'
+                        file_til = t_tilPath + img_name[0:23] + '_color.png'
+                        try:
+                            ind=df['Patient ID'].tolist().index(img_name[0:12])
+                            if isinstance(df['Neoplasm Disease Stage American Joint Committee on Cancer Code'][ind], str):
+                                temp_pid=img_name[0:23]
+                                temp_stage=df['Neoplasm Disease Stage American Joint Committee on Cancer Code'][ind]
+                                patient_stage.append(temp_stage)
+                            else:
+                                print(f"{img_name} has no stage info {df['Neoplasm Disease Stage American Joint Committee on Cancer Code'][ind]}")
                                 continue
                         except:
                             print(f"{img_name} not in the excel file patient info")
@@ -366,6 +452,7 @@ if __name__=='__main__':
                     if tils_feats==True:
                         tumor_til_analysis(file_img,file_tumor,file_til,thr,mag,ignore_small_inv,pp)
                         patient_id.append(temp_pid)
+
                     else:
                         # tumor mask
                         tumor_mask_generation(file_img, file_tumor, thr, mag=1.25/2, debug_tumor=True)
@@ -375,7 +462,9 @@ if __name__=='__main__':
         ## only first run--save features
         save_feat=True
         if save_feat==True:
-            data={'patient id': patient_id}
+            #data={'patient id': patient_id}
+            data={'patient id': patient_id,'patient stage':patient_stage}
+
             data.update(feat)
             df2=pd.DataFrame(data)
 

@@ -124,8 +124,8 @@ if __name__=='__main__':
                  #'../../../data/kang_colon_data/predictions_tumor/dl_model_v01/Kang_MSI_WSI_2019_10_07_low/']
 
     ## til prediction mask
-    tilPath= ['../../data/pan_cancer_tils/data_yonsei_v01_pred/181119/',
-              '../../data/pan_cancer_tils/data_yonsei_v01_pred/181211/']
+    tilPath= ['../../data/pan_cancer_tils/data_yonsei_v01_pred/pred_images0.4/181119/',
+              '../../data/pan_cancer_tils/data_yonsei_v01_pred/pred_images0.4/181211/']
               #'../../../data/pan_cancer_tils/data_yonsei_v01_pred//Kang_MSI_WSI_2019_10_07/']
     thr=0.5 # threshold on tumor prediction map
     mag = 0.078125*2
