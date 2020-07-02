@@ -213,25 +213,29 @@ def tumor_til_analysis(file_img,file_tumor,file_til,thr,mag,ignore_small_inv=Fal
     #return True
 
     # ## plot figure and contours on figures for paper
-    # LR2 = LR.copy()
-    #
-    # #plt.imshow(LR2)
-    # # [r2, c2] = np.where(tumorb > 0.5)
-    # # plt.plot(c2, r2, 'y.', markersize=0.1)
-    # #
-    # # [r4, c4] = np.where(inv_mask > 0.5)
-    # # plt.plot(c4, r4, 'b.', markersize=0.1)
-    # #
+    # plot first figure in the pipeline
+    LR2 = LR.copy()
+    f=plt.figure()
+    plt.imshow(LR2)
+
+    #[r2, c2] = np.where(tumorb > 0.5)
+    #plt.plot(c2, r2, 'y.', markersize=0.1)
+
+    [r4, c4] = np.where(inv_mask > 0.5)
+    plt.plot(c4, r4, 'b.', markersize=0.1)
+
+    [r, c] = np.where(til_map2[:, :, 0])
+    plt.plot(c, r, 'c.', markersize=0.1)
+    # ---end ploting the first figure
+
+
+
     # [r, c] = np.where(til_map2[:, :, 0])
     # LR2[r, c, 0] = 128
     # LR2[r, c, 1] = 128
     # LR2[r, c, 2] = 0
-    # #plt.plot(c, r, 'c.', markersize=0.1)
-    # #plt.imshow(LR)
-    # #[r, c] = np.where(til_map2[:, :, 0])
-    # #plt.plot(c, r, 'c.', markersize=0.1)
-    # #f=plt.figure()
-    # #plt.imshow(LR)
+    # plt.plot(c, r, 'c.', markersize=0.1)
+    # plt.imshow(LR)
     #
     # #plt.contour(tumorb, [0.5], colors=['red'],linewidths=0.5)
     # #colors=['yellow','blue','green','cyan']

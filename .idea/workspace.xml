@@ -2,81 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9412b69-eeb4-4bb4-ac18-d5d88e67fa94" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Tumor_detector_stomach_colon/plots/acc_time.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Utility_debugs/iterative_erosion.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Utility_debugs/overlap_heatmap_wsi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_gen_getis_ords.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_spatial_data_analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/kang_colon_dfs.R" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/kang_colon_dfs.R" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/kang_colon_os.R" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/kang_colon_os.R" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/lee_colon_os.R" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/lee_colon_os.R" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/lee_os/2_feat0.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/lee_os/2_feat0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/lee_os/2_feat1.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/lee_os/2_feat1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/lee_os/2_feat2.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/lee_os/2_feat2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/lee_os/2_feat3.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/lee_os/2_feat3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/lee_os/2_feat4.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/lee_os/2_feat4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/lee_os/2_feat5.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/lee_os/2_feat5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/lee_os/2_feat6.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/lee_os/2_feat6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/lee_os/3_feat0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/lee_os/3_feat1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/lee_os/3_feat2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/lee_os/3_feat3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/lee_os/3_feat4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/lee_os/3_feat5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/lee_os/3_feat6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_colon_dfs.R" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/tcga_colon_dfs.R" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_colon_os.R" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/tcga_colon_os.R" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_dfs/2_feat0.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/tcga_dfs/2_feat0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_dfs/2_feat1.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/tcga_dfs/2_feat1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_dfs/2_feat2.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/tcga_dfs/2_feat2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_dfs/2_feat3.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/tcga_dfs/2_feat3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_dfs/2_feat4.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/tcga_dfs/2_feat4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_dfs/2_feat5.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/tcga_dfs/2_feat5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_dfs/2_feat6.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/tcga_dfs/2_feat6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_dfs/3_feat0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_dfs/3_feat1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_dfs/3_feat2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_dfs/3_feat3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_dfs/3_feat4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_dfs/3_feat5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_dfs/3_feat6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_os/2_feat0.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/tcga_os/2_feat0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_os/2_feat1.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/tcga_os/2_feat1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_os/2_feat2.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/tcga_os/2_feat2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_os/2_feat3.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/tcga_os/2_feat3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_os/2_feat4.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/tcga_os/2_feat4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_os/2_feat5.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/tcga_os/2_feat5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_os/2_feat6.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/tcga_os/2_feat6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_os/3_feat0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_os/3_feat1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_os/3_feat2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_os/3_feat3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_os/3_feat4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_os/3_feat5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/tcga_os/3_feat6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/yonsei_dfs/2_feat0.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/yonsei_dfs/2_feat0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/yonsei_dfs/2_feat1.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/yonsei_dfs/2_feat1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/yonsei_dfs/2_feat2.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/yonsei_dfs/2_feat2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/yonsei_dfs/2_feat3.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/yonsei_dfs/2_feat3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/yonsei_dfs/2_feat4.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/yonsei_dfs/2_feat4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/yonsei_dfs/2_feat5.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/yonsei_dfs/2_feat5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/yonsei_dfs/2_feat6.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/yonsei_dfs/2_feat6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/yonsei_os/2_feat0.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/yonsei_os/2_feat0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/yonsei_os/2_feat1.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/yonsei_os/2_feat1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/yonsei_os/2_feat2.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/yonsei_os/2_feat2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/yonsei_os/2_feat3.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/yonsei_os/2_feat3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/yonsei_os/2_feat4.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/yonsei_os/2_feat4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/yonsei_os/2_feat5.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/yonsei_os/2_feat5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R_analysis/yonsei_os/2_feat6.png" beforeDir="false" afterPath="$PROJECT_DIR$/R_analysis/yonsei_os/2_feat6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/main_td_train_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tumor_detector_stomach_colon/main_td_train_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/logs.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_04.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_04_czi.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main_tils_analysis_v01.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_tils_analysis_v01.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_tils_analysis_v02.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_tils_analysis_v02.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_tils_train_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_tils_train_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot_01.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plot_02.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot_04.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,31 +36,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Utility_debugs/overlap_tils_wsi.py" />
+    <property name="last_opened_file_path" value="E:/Hongming/projects/tcga-bladder-mutationburden/tcga_tmb_prediction/step05)_heatmap_entropy/f_overlap_til_tmb" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.main_tils_train_test">
-    <configuration name="evaluation_roc" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="TILs_Analysis" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../yonsei_colon_project/5_msi_prediction" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../yonsei_colon_project/5_msi_prediction/evaluation_roc.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.test_gen_getis_ords">
     <configuration name="main_tils_analysis_v01" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TILs_Analysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -171,28 +82,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="overlap_heatmap_wsi" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="TILs_Analysis" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Utility_debugs" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Utility_debugs/overlap_heatmap_wsi.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="plot_01" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="overlap_tils_msi_tumor" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TILs_Analysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -204,7 +94,49 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot_01.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/overlap_tils_msi_tumor.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="s3_train_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TILs_Analysis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../TMB_Pred_Pathology" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../TMB_Pred_Pathology/s3_train_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_gen_getis_ords" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TILs_Analysis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_gen_getis_ords.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -215,11 +147,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test_gen_getis_ords" />
+        <item itemvalue="Python.overlap_tils_msi_tumor" />
         <item itemvalue="Python.main_tils_train_test" />
+        <item itemvalue="Python.s3_train_test" />
         <item itemvalue="Python.main_tils_analysis_v01" />
-        <item itemvalue="Python.evaluation_roc" />
-        <item itemvalue="Python.overlap_heatmap_wsi" />
-        <item itemvalue="Python.plot_01" />
       </list>
     </recent_temporary>
   </component>
@@ -249,35 +181,35 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="789" y="195" width="707" height="549" key="#xdebugger.evaluate" timestamp="1588277098616">
+    <state x="607" y="275" width="819" height="549" key="#xdebugger.evaluate" timestamp="1592509139171">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="789" y="195" width="707" height="549" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1588277098616" />
+    <state x="607" y="275" width="819" height="549" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1592509139171" />
     <state x="1439" y="885" width="879" height="470" key="#xdebugger.evaluate/0.0.3440.1400@0.0.3440.1400" timestamp="1584550460139" />
-    <state x="662" y="237" key="FileChooserDialogImpl" timestamp="1588342309888">
+    <state x="662" y="237" key="FileChooserDialogImpl" timestamp="1592583786792">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="662" y="237" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588342309888" />
+    <state x="662" y="237" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1592583786792" />
     <state x="1739" y="536" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1584475906686" />
-    <state width="1515" height="127" key="GridCell.Tab.0.bottom" timestamp="1588277265501">
+    <state width="1326" height="188" key="GridCell.Tab.0.bottom" timestamp="1593178840793">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="127" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588277265501" />
+    <state width="1326" height="188" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593178840793" />
     <state width="1833" height="251" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1584550297423" />
-    <state width="1515" height="127" key="GridCell.Tab.0.center" timestamp="1588277265501">
+    <state width="1326" height="188" key="GridCell.Tab.0.center" timestamp="1593178840793">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="127" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588277265501" />
+    <state width="1326" height="188" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593178840793" />
     <state width="1833" height="251" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1584550297423" />
-    <state width="1515" height="127" key="GridCell.Tab.0.left" timestamp="1588277265501">
+    <state width="1326" height="188" key="GridCell.Tab.0.left" timestamp="1593178840793">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="127" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588277265501" />
+    <state width="1326" height="188" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593178840793" />
     <state width="1833" height="251" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1584550297423" />
-    <state width="1515" height="127" key="GridCell.Tab.0.right" timestamp="1588277265501">
+    <state width="1326" height="188" key="GridCell.Tab.0.right" timestamp="1593178840793">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="127" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588277265501" />
+    <state width="1326" height="188" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593178840793" />
     <state width="1833" height="251" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1584550297423" />
     <state width="1254" height="127" key="GridCell.Tab.1.bottom" timestamp="1587734518864">
       <screen x="0" y="0" width="1536" height="824" />
@@ -299,18 +231,19 @@
     </state>
     <state width="1254" height="127" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1587734518864" />
     <state width="1833" height="251" key="GridCell.Tab.1.right/0.0.3440.1400@0.0.3440.1400" timestamp="1584550322425" />
-    <state x="1395" y="343" key="SettingsEditor" timestamp="1582814894913">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state x="1395" y="343" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1582814894913" />
-    <state width="915" height="619" key="XDebugger.FullValuePopup" timestamp="1583955712227">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="915" height="619" key="XDebugger.FullValuePopup/0.0.3440.1400@0.0.3440.1400" timestamp="1583955712227" />
-    <state x="859" y="320" key="com.intellij.ide.util.TipDialog" timestamp="1588274811610">
+    <state x="501" y="114" key="SettingsEditor" timestamp="1592506680466">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="859" y="320" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1588274811610" />
+    <state x="501" y="114" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1592506680466" />
+    <state width="409" height="365" key="XDebugger.FullValuePopup" timestamp="1592231255884">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="409" height="365" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1592231255884" />
+    <state width="915" height="619" key="XDebugger.FullValuePopup/0.0.3440.1400@0.0.3440.1400" timestamp="1583955712227" />
+    <state x="859" y="320" key="com.intellij.ide.util.TipDialog" timestamp="1592228751561">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="859" y="320" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1592228751561" />
     <state x="1924" y="544" key="com.intellij.ide.util.TipDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1584549699636" />
   </component>
   <component name="XDebuggerManager">
@@ -363,13 +296,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main_tils_train_test.py</url>
-          <line>211</line>
+          <line>224</line>
           <option name="timeStamp" value="118" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Utility_debugs/overlap_heatmap_wsi.py</url>
           <line>27</line>
           <option name="timeStamp" value="122" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main_tils_analysis_v01.py</url>
+          <line>223</line>
+          <option name="timeStamp" value="124" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test_gen_getis_ords.py</url>
+          <line>20</line>
+          <option name="timeStamp" value="129" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -12,7 +12,7 @@ environment: pytorch
 
 import os
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "0,1"                                    # The GPU id to use, usually either "0" or "1";
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"                                    # The GPU id to use, usually either "0" or "1";
 import sys
 import pandas as pd
 import time
@@ -178,7 +178,9 @@ if __name__=='__main__':
         #switches to select different datasets
         Stomach_Immunotherapy_stmary=False
         GC_SM2_stmary=False
-        Stomach_Cancer_Stage4_Immunotherapy=True
+        Stomach_Cancer_Stage4_Immunotherapy=False
+        tcga_blca=False
+        tcga_stad=True
 
         cuda_id = 0
         class_name = ['others', 'tils']  # see data fold names
@@ -199,10 +201,21 @@ if __name__=='__main__':
             output_path = [rela_path + 'data/stomach_cancer_immunotherapy/tils_maps/Stomach_Cancer_Stage4_Immunotherapy/biopsy_45pts/',
                            rela_path + 'data/stomach_cancer_immunotherapy/tils_maps/Stomach_Cancer_Stage4_Immunotherapy/surgical_19pts/']
             wsi_ext='.czi'
+        elif tcga_blca==True:
+            wsi_path = [rela_path + 'data/tcga_blca_slide/blca_wsi/',
+                        rela_path + 'data/tcga_blca_slide/blca_wsi2/']
+            output_path = [rela_path + 'data/tcga_blca_slide/til_maps/wsi/',
+                           rela_path + 'data/tcga_blca_slide/til_maps/wsi2/']
+            wsi_ext='.svs'
+        elif tcga_stad==True:
+            wsi_path = [rela_path + 'data/tcga_stad_slide/wsis/']
+            output_path = [rela_path + 'data/tcga_stad_slide/til_maps/wsis/']
+
+            wsi_ext='.svs'
         else:
             raise RuntimeError('processing dataset selection is not correct~~~~~~~~~')
 
-        for i in range(1,len(wsi_path)):
+        for i in range(0,len(wsi_path)):
             start_time = time.time()
             # best resnet18
             model_tl = Transfer_Learning_PyTorch(model_dir=rela_path+'data/pan_cancer_tils/models/resnet18/',
