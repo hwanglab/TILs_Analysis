@@ -24,17 +24,25 @@ from Transfer_Learning_PyTorch import Transfer_Learning_PyTorch             # Tr
 
 
 # switch between training & testing & testing_external
-training=False
+training=True
 testing=False
-testing_ext=True
+testing_ext=False
 
 if __name__=='__main__':
 
-    if training == True:
+    stad_coad=False
+    blca=True
+
+    if stad_coad==True:
         data_dir = rela_path + 'data/tcga_gas_col_data/data_v01/'
+        model_dir = './stad_coad_models/'
+    elif blca==True:
+        data_dir = rela_path + 'data/tcga_blca_data/tumor_detection_data/data_bladder_20x/'
+        model_dir = './blca_models/'
+    else:
+        print('undefined options....')
 
-        model_dir = './models/'
-
+    if training == True:
         model_version = []
         validation_acc = []
         testing_acc = []
@@ -76,7 +84,7 @@ if __name__=='__main__':
                         model_version.append(model_v)
                         validation_acc.append(valid_acc.cpu().numpy().tolist())
 
-                        model_tl = Transfer_Learning_PyTorch_V01(load_data=load_data, test_dir=data_dir,
+                        model_tl = Transfer_Learning_PyTorch(load_data=load_data, test_dir=data_dir,
                                                                  model_dir=model_dir,
                                                                  model_name=model_name[0],
                                                                  batch_size=bs, fp=fp, op=op, lr=lr)

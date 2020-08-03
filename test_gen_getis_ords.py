@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import geopandas as gpd
 import pysal
+import matplotlib.pyplot as plt
 
 #matplotlib inline
 from matplotlib import pyplot, image, colors
@@ -31,6 +32,7 @@ n_msi = []
 for x in cols:
     org_y = 0
     for y in rows:
+        # Note that: the coordinate system for polygon at bottom-left is (0,0), while for image the top-left is (0,0)
         polygons.append(Polygon([(x, y), (x+grid, y), (x+grid, y-grid), (x, y-grid)]))
         # get the number of lymphocyates in a grid
         lympho = img[org_y:org_y+grid, x:x+grid, 0]
@@ -59,6 +61,23 @@ cmap = colors.LinearSegmentedColormap.from_list(
 
 # plot
 fig, ax = pyplot.subplots(1, figsize=(10,10))
-img_df.plot(cmap=cmap, ax=ax, column='z-score', edgecolor='1.0')
+img_df.plot(cmap=cmap, ax=ax, column='z-score', edgecolor='1.0',legend=True)
 # turn off bounding box
 tmp = ax.axis('off')
+
+hot_til=[]
+cod_til=[]
+int_til=[]
+hh=10
+ll=5
+for ind,vv in enumerate(getis_ord_gi.Zs):
+    if vv>=hh:
+        hot_til.append(n_lympho[ind])
+    elif vv<=ll:
+        cod_til.append(n_lympho[ind])
+    else:
+        int_til.append(n_lympho[ind])
+
+print(np.mean(hot_til))
+print(np.mean(int_til))
+print(np.mean(cod_til))

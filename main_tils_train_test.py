@@ -180,7 +180,9 @@ if __name__=='__main__':
         GC_SM2_stmary=False
         Stomach_Cancer_Stage4_Immunotherapy=False
         tcga_blca=False
-        tcga_stad=True
+        tcga_stad=False
+        colon_IHC=False
+        tcga_luad=True
 
         cuda_id = 0
         class_name = ['others', 'tils']  # see data fold names
@@ -212,6 +214,14 @@ if __name__=='__main__':
             output_path = [rela_path + 'data/tcga_stad_slide/til_maps/wsis/']
 
             wsi_ext='.svs'
+        elif colon_IHC==True:
+            wsi_path = [rela_path + 'data/kang_colon_slide/colon_IHC_JK/']
+            output_path = [rela_path + 'data/kang_colon_slide/colon_IHC_JK/til_maps/']
+            wsi_ext='HE.mrxs'
+        elif tcga_luad==True:
+            wsi_path = [rela_path + 'data/tcga_luad_slide/LUAD_wsi/']
+            output_path = [rela_path + 'data/tcga_luad_slide/til_maps/']
+            wsi_ext='.svs'
         else:
             raise RuntimeError('processing dataset selection is not correct~~~~~~~~~')
 
@@ -220,7 +230,7 @@ if __name__=='__main__':
             # best resnet18
             model_tl = Transfer_Learning_PyTorch(model_dir=rela_path+'data/pan_cancer_tils/models/resnet18/',
                                                  model_name='resnet18', batch_size=4, fp=0, op='adam',
-                                                 lr=0.0001,num_workers=10, wsi_path=wsi_path[i], wsi_ext=wsi_ext, output_path=output_path[i],
+                                                 lr=0.0001,num_workers=20, wsi_path=wsi_path[i], wsi_ext=wsi_ext, output_path=output_path[i],
                                                  cuda_id=cuda_id, class_num=len(class_name),class_interest=class_interest,tile_size=[112,112])
             model_tl.test_end_to_end()
             print("---{} minutes---".format((time.time() - start_time) / 60))
