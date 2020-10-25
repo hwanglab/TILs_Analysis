@@ -13,5 +13,7 @@ Step-2: You can run the training and testing procoess from the file: main_tils_t
 ### Others
 (1) Invasive Margin Analysis: We worked with Dr.Kang for quantifying tils density at tumor invasive margins. For codes I wrote, you can find them from the file: main_tils_analysis_v01.py
 
-(2) Entropy Computation: Given the heatmap predictions, we can compute the entropy to quantify its heterogeneities. The example can be found the in the location: ./Utility_debugs/com_entropy.py. The function I wrote to compute Shannon entropy is: def shannon_entropy_bin(X,b=0.1,vmin=0.0,vmax=1.0):
+(2) KM analysis for tils density at invasive margins: For the R codes I worte for KM analysis of colon cancer patient survivals (collaborated with Dr.Kang), you could find them at the locaton: ./R_analysis
+
+(3) Entropy Computation: Given the heatmap predictions, we can compute the entropy to quantify its heterogeneities. The example can be found the in the location: ./Utility_debugs/com_entropy.py. The function I wrote to compute Shannon entropy is: def shannon_entropy_bin(X,b=0.1,vmin=0.0,vmax=1.0):
 
