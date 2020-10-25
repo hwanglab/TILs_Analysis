@@ -11,5 +11,7 @@ Step-1: I downloaded and used the training dataset from the paper: "Spatial Orga
 Step-2: You can run the training and testing procoess from the file: main_tils_train_test.py. In the training process, I used the dataset built by myself (train, valid and test), which could be found in the lab share space: Z:\Datasets\Pathology_Slides\pan_cancer_tils. For testing example, you can refer it from https://github.com/hwanglab/wsi_deploy_models
 
 ### Others
-(1) We worked with Dr.Kang for quantifying tils density at tumor invasive margins. For codes I wrote, you can find them from the file: main_tils_analysis_v01.py
+(1) Invasive Margin Analysis: We worked with Dr.Kang for quantifying tils density at tumor invasive margins. For codes I wrote, you can find them from the file: main_tils_analysis_v01.py
+
+(2) Entropy Computation: Given the heatmap predictions, we can compute the entropy to quantify its heterogeneities. The example can be found the in the location: ./Utility_debugs/com_entropy.py. The function I wrote to compute Shannon entropy is: def shannon_entropy_bin(X,b=0.1,vmin=0.0,vmax=1.0):
 
