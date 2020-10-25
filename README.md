@@ -17,3 +17,5 @@ Step-2: You can run the training and testing procoess from the file: main_tils_t
 
 (3) Entropy Computation: Given the heatmap predictions, we can compute the entropy to quantify its heterogeneities. The example can be found the in the location: ./Utility_debugs/com_entropy.py. The function I wrote to compute Shannon entropy is: def shannon_entropy_bin(X,b=0.1,vmin=0.0,vmax=1.0):
 
+(4) Other code files: They were mainly used by meself for studing and researching. You could ignore them here.
+
