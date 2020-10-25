@@ -6,5 +6,7 @@
 
 (2) If you want to check the process how to train tils detecors, it would involve multiple steps: 
     
----(i) I downloaded and used the training dataset from the paper: "Spatial Organization and Molecular Correlation of Tumor-Infiltrating Lymphocytes Using Deep Learning on Pathology Images". You probably need to read and understand the dataset from this paper.
+Step-1: I downloaded and used the training dataset from the paper: "Spatial Organization and Molecular Correlation of Tumor-Infiltrating Lymphocytes Using Deep Learning on Pathology Images". You probably need to read and understand the dataset from this paper.
+
+Step-2: You can run the training and testing procoess from the file: main_tils_train_test.py. 
 
