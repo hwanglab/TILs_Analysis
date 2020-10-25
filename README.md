@@ -8,5 +8,5 @@
     
 Step-1: I downloaded and used the training dataset from the paper: "Spatial Organization and Molecular Correlation of Tumor-Infiltrating Lymphocytes Using Deep Learning on Pathology Images". You probably need to read and understand the dataset from this paper.
 
-Step-2: You can run the training and testing procoess from the file: main_tils_train_test.py. 
+Step-2: You can run the training and testing procoess from the file: main_tils_train_test.py. In the training process, I used the dataset built by myself (train, valid and test), which could be found in the lab share space: Z:\Datasets\Pathology_Slides\pan_cancer_tils. For testing example, you can refer it from https://github.com/hwanglab/wsi_deploy_models
 
