@@ -182,7 +182,9 @@ if __name__=='__main__':
         tcga_blca=False
         tcga_stad=False
         colon_IHC=False
-        tcga_luad=True
+        tcga_luad=False
+        gastric_trial=False
+        gastric_trial_czi=True
 
         cuda_id = 0
         class_name = ['others', 'tils']  # see data fold names
@@ -222,6 +224,33 @@ if __name__=='__main__':
             wsi_path = [rela_path + 'data/tcga_luad_slide/LUAD_wsi/']
             output_path = [rela_path + 'data/tcga_luad_slide/til_maps/']
             wsi_ext='.svs'
+        elif gastric_trial==True:
+            # images are stored at labshared server
+            wsi_path = ['/mnt/isilon/data/w_QHS/hwangt-share/Datasets/CLASSIC_Stomach_Cancer_Image/LEICA/1-100/',
+                        '/mnt/isilon/data/w_QHS/hwangt-share/Datasets/CLASSIC_Stomach_Cancer_Image/LEICA/101-200/',
+                        '/mnt/isilon/data/w_QHS/hwangt-share/Datasets/CLASSIC_Stomach_Cancer_Image/LEICA/201-300/',
+                        '/mnt/isilon/data/w_QHS/hwangt-share/Datasets/CLASSIC_Stomach_Cancer_Image/LEICA/301-400/',
+                        '/mnt/isilon/data/w_QHS/hwangt-share/Datasets/CLASSIC_Stomach_Cancer_Image/LEICA/401-500/',
+                        '/mnt/isilon/data/w_QHS/hwangt-share/Datasets/CLASSIC_Stomach_Cancer_Image/LEICA/501-600/',
+                        '/mnt/isilon/data/w_QHS/hwangt-share/Datasets/CLASSIC_Stomach_Cancer_Image/LEICA/601-622/']
+            output_path = [rela_path + 'data/CLASSIC_stomach_cancer_image/til_maps/1-100/',
+                           rela_path + 'data/CLASSIC_stomach_cancer_image/til_maps/101-200/',
+                           rela_path + 'data/CLASSIC_stomach_cancer_image/til_maps/201-300/',
+                           rela_path + 'data/CLASSIC_stomach_cancer_image/til_maps/301-400/',
+                           rela_path + 'data/CLASSIC_stomach_cancer_image/til_maps/401-500/',
+                           rela_path + 'data/CLASSIC_stomach_cancer_image/til_maps/501-600/',
+                           rela_path + 'data/CLASSIC_stomach_cancer_image/til_maps/601-622/']
+            wsi_ext = '.svs'
+        elif gastric_trial_czi==True:
+            wsi_path = [#'/mnt/isilon/data/w_QHS/hwangt-share/Datasets/CLASSIC_Stomach_Cancer_Image/sample_1_175/',
+                        #'/mnt/isilon/data/w_QHS/hwangt-share/Datasets/CLASSIC_Stomach_Cancer_Image/sample_176_375/',
+                        '/mnt/isilon/data/w_QHS/hwangt-share/Datasets/CLASSIC_Stomach_Cancer_Image/sample_376_556/',
+                        '/mnt/isilon/data/w_QHS/hwangt-share/Datasets/CLASSIC_Stomach_Cancer_Image/sample_557_622/']
+            output_path = [#rela_path + 'data/CLASSIC_stomach_cancer_image/til_maps/sample_1_175/',
+                           #rela_path + 'data/CLASSIC_stomach_cancer_image/til_maps/sample_176_375/',
+                           rela_path + 'data/CLASSIC_stomach_cancer_image/til_maps/sample_376_556/',
+                           rela_path + 'data/CLASSIC_stomach_cancer_image/til_maps/sample_557_622/']
+            wsi_ext = '.czi'
         else:
             raise RuntimeError('processing dataset selection is not correct~~~~~~~~~')
 

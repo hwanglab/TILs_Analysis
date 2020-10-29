@@ -2,68 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9412b69-eeb4-4bb4-ac18-d5d88e67fa94" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Utility_debugs/post_threshold_tils_map.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Utility_debugs/com_entropy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Utility_debugs/overlap_tils_msi_tumor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/main_td_train_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tumor_detector_stomach_colon/main_td_train_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_adam_0.0001_16.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_adam_0.0001_16.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_adam_0.0001_4.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_adam_0.0001_4.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_adam_0.0001_64.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_adam_0.0001_64.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_adam_0.001_16.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_adam_0.001_16.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_adam_0.001_4.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_adam_0.001_4.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_adam_0.001_64.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_adam_0.001_64.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_sgd_0.0001_16.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_sgd_0.0001_16.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_sgd_0.0001_4.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_sgd_0.0001_4.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_sgd_0.0001_64.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_sgd_0.0001_64.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_sgd_0.001_16.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_sgd_0.001_16.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_sgd_0.001_4.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_sgd_0.001_4.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_sgd_0.001_64.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_sgd_0.001_64.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_sgd_1e-05_16.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0.8_sgd_1e-05_4.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_adam_0.0001_16.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_adam_0.0001_16.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_adam_0.0001_4.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_adam_0.0001_4.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_adam_0.0001_64.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_adam_0.0001_64.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_adam_0.001_16.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_adam_0.001_16.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_adam_0.001_4.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_adam_0.001_4.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_adam_0.001_64.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_adam_0.001_64.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_adam_1e-05_16.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_adam_1e-05_4.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_adam_1e-05_64.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_sgd_0.0001_16.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_sgd_0.0001_16.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_sgd_0.0001_4.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_sgd_0.0001_4.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_sgd_0.0001_64.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_sgd_0.0001_64.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_sgd_0.001_16.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_sgd_0.001_16.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_sgd_0.001_4.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_sgd_0.001_4.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_sgd_0.001_64.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_sgd_0.001_64.pt.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_sgd_1e-05_16.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_sgd_1e-05_4.pt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tumor_detector_stomach_colon/models/resnet18_0_sgd_1e-05_64.pt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utility_debugs/overlap_heatmap_wsi.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utility_debugs/overlap_heatmap_wsi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utility_debugs/plot01.m" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main_tils_train_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_tils_train_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_gen_getis_ords.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_gen_getis_ords.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_spatial_data_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_spatial_data_analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/overlap_tils_msi_tumor.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +40,28 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Python.test_gen_getis_ords">
+  <component name="RunManager" selected="Python.plot_03">
+    <configuration name="com_entropy" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TILs_Analysis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Utility_debugs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Utility_debugs/com_entropy.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main_tils_train_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TILs_Analysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -137,7 +104,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="post_threshold_tils_map" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="overlap_tils_msi_tumor2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TILs_Analysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -149,7 +116,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Utility_debugs/post_threshold_tils_map.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Utility_debugs/overlap_tils_msi_tumor2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -158,7 +125,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_gen_getis_ords" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="plot_03" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TILs_Analysis" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -170,28 +137,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_gen_getis_ords.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test_spatial_data_analysis" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="TILs_Analysis" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_spatial_data_analysis.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot_03.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -202,11 +148,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.test_gen_getis_ords" />
-        <item itemvalue="Python.post_threshold_tils_map" />
-        <item itemvalue="Python.test_spatial_data_analysis" />
-        <item itemvalue="Python.overlap_tils_msi_tumor" />
+        <item itemvalue="Python.plot_03" />
+        <item itemvalue="Python.com_entropy" />
         <item itemvalue="Python.main_tils_train_test" />
+        <item itemvalue="Python.overlap_tils_msi_tumor" />
+        <item itemvalue="Python.overlap_tils_msi_tumor2" />
       </list>
     </recent_temporary>
   </component>
@@ -236,59 +182,43 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1147" y="367" width="819" height="549" key="#xdebugger.evaluate" timestamp="1595440291527">
-      <screen x="0" y="0" width="3440" height="1400" />
+    <state x="290" y="421" width="1020" height="403" key="#xdebugger.evaluate" timestamp="1601996899023">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="512" y="216" width="819" height="549" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1595428435259" />
+    <state x="290" y="421" width="1020" height="403" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1601996899023" />
     <state x="1147" y="367" key="#xdebugger.evaluate/0.0.3440.1400@0.0.3440.1400" timestamp="1595440291527" />
-    <state x="662" y="237" key="FileChooserDialogImpl" timestamp="1592583786792">
+    <state x="662" y="237" key="FileChooserDialogImpl" timestamp="1601474410587">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="662" y="237" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1592583786792" />
-    <state width="1515" height="246" key="GridCell.Tab.0.bottom" timestamp="1595434137936">
+    <state x="662" y="237" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1601474410587" />
+    <state width="1515" height="98" key="GridCell.Tab.0.bottom" timestamp="1602172486155">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="246" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1595434137936" />
-    <state width="1515" height="246" key="GridCell.Tab.0.center" timestamp="1595434137936">
+    <state width="1515" height="98" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1602172486155" />
+    <state width="1515" height="98" key="GridCell.Tab.0.center" timestamp="1602172486155">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="246" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1595434137936" />
-    <state width="1515" height="246" key="GridCell.Tab.0.left" timestamp="1595434137936">
+    <state width="1515" height="98" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1602172486155" />
+    <state width="1515" height="98" key="GridCell.Tab.0.left" timestamp="1602172486155">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="246" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1595434137936" />
-    <state width="1515" height="246" key="GridCell.Tab.0.right" timestamp="1595434137936">
+    <state width="1515" height="98" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1602172486155" />
+    <state width="1515" height="98" key="GridCell.Tab.0.right" timestamp="1602172486155">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="246" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1595434137936" />
-    <state width="1254" height="127" key="GridCell.Tab.1.bottom" timestamp="1587734518864">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1254" height="127" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587734518864" />
-    <state width="1254" height="127" key="GridCell.Tab.1.center" timestamp="1587734518864">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1254" height="127" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1587734518864" />
-    <state width="1254" height="127" key="GridCell.Tab.1.left" timestamp="1587734518864">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1254" height="127" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1587734518864" />
-    <state width="1254" height="127" key="GridCell.Tab.1.right" timestamp="1587734518864">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1254" height="127" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1587734518864" />
+    <state width="1515" height="98" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1602172486155" />
     <state x="501" y="114" key="SettingsEditor" timestamp="1595433227638">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="501" y="114" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1595433227638" />
-    <state width="409" height="365" key="XDebugger.FullValuePopup" timestamp="1595347690399">
+    <state width="409" height="365" key="XDebugger.FullValuePopup" timestamp="1601996292582">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="409" height="365" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1595347690399" />
-    <state x="1924" y="544" key="com.intellij.ide.util.TipDialog" timestamp="1595440243169">
-      <screen x="0" y="0" width="3440" height="1400" />
+    <state width="409" height="365" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1601996292582" />
+    <state x="859" y="320" key="com.intellij.ide.util.TipDialog" timestamp="1601410342259">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="859" y="320" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1595432668174" />
+    <state x="859" y="320" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1601410342259" />
     <state x="1924" y="544" key="com.intellij.ide.util.TipDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1595440243169" />
   </component>
   <component name="XDebuggerManager">
@@ -373,6 +303,26 @@
           <url>file://$PROJECT_DIR$/test_gen_getis_ords.py</url>
           <line>67</line>
           <option name="timeStamp" value="143" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main_tils_train_test.py</url>
+          <line>256</line>
+          <option name="timeStamp" value="154" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main_tils_analysis_v01.py</url>
+          <line>19</line>
+          <option name="timeStamp" value="158" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Utility_debugs/com_entropy.py</url>
+          <line>85</line>
+          <option name="timeStamp" value="165" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/plot_03.py</url>
+          <line>71</line>
+          <option name="timeStamp" value="168" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

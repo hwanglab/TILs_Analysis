@@ -33,7 +33,7 @@ if __name__=='__main__':
 
     pred_path1 = rela_path+'data/tcga_coad_read_data/coad_tumor_preds/resnet18_tcga_v2_tils/'
 
-    pred_path2 =  rela_path+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.4/'
+    pred_path2 =  rela_path+'data/tcga_coad_read_data/coad_read_tils_preds/pred_maps_0.5/'
 
     wsis = sorted(os.listdir(wsi_path))
     for img_name in wsis[12:]:

@@ -34,7 +34,7 @@ if __name__=='__main__':
     blca=True
 
     if stad_coad==True:
-        data_dir = rela_path + 'data/tcga_gas_col_data/data_v01/'
+        data_dir = rela_path + 'data/tcga_gas_col_data/tumor_detection/'
         model_dir = './stad_coad_models/'
     elif blca==True:
         data_dir = rela_path + 'data/tcga_blca_data/tumor_detection_data/data_bladder_20x/'
